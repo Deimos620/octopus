@@ -1,0 +1,86 @@
+
+- @title = "#{@project_date.schedule_date.strftime("%B %e, %Y ")}" 
+.container
+  .project-headline
+
+      .project-title
+        = link_to project_dashboard_index_path(project_id: @project.id)
+          =@project.full_title
+      .breadcrumbs
+        / div 
+        /   - gon.taken_times.each do |t|
+        /      = t
+        ul.breadcrumb
+          li
+            = link_to projects_path
+              i.fa.fa-home
+          li
+            = link_to project_dashboard_index_path(project_id: @project.id)
+              |Dashboard
+          li.active
+            = @project_date.schedule_date.strftime("%B %e, %Y ")
+  .col-md-12.project-date
+    .panel-row.panel-row-700
+      div class="panel panel-octopus panel-date  available-#{@project_date.available} current-#{@project_date.current?}"
+        .panel-heading align="center"
+          - if @prev.present?
+            = link_to project_project_date_path( id: @prev.id, project_id: @prev.project_id)
+              i.fa.fa-caret-left.fa-2x.pull-left style="margin-top: -10px"
+          span.super
+            = @project_date.schedule_date.strftime("%A")
+          |&nbsp;
+          span.light 
+            = @project_date.schedule_date.strftime("%b. %d ")
+          - if @next.present?
+            = link_to project_project_date_path( id: @next.id, project_id: @next.project_id)
+              i.fa.fa-caret-right.fa-2x.pull-right style="margin-top: -10px"
+        .panel-body
+          - if @events.present?
+            = render  partial: 'project_dates/p/appointments'
+          - if @project_date.current?
+            - if not @project_date.available? 
+              h2
+                em
+                  |DATE UNAVAILABLE
+              - if current_user.can_edit(@project_date.project_id) && @project_date.current?
+                = link_to root_path, class: 'btn btn-orange center-block'
+                  |MAKE DATE AVAILABLE
+            - if current_user.has_accepted?(@project.id)  && @project_date.available?
+              = render partial: "/project_dates/p/edit_appointments"
+            - elsif  @project_date.available?
+              |Your RSVP is currently&nbsp;
+              = current_user.current_project_participation(@project.id)
+              |.
+              br/
+              |Accept participation in order to make an appointment
+              = link_to root_path
+                |ACCEPT PARTICIPATION
+javascript:
+ $('#mainTimeMenu .time-start, #mainTimeMenu .time-end').timepicker({
+   'timeFormat': 'g:ia',
+    'minuteStep': 30,     
+    'minTime': gon.time_start,
+    'maxTime': gon.time_end,
+    'disableTimeRanges':  gon.taken_times,
+
+  });
+
+  $('#mainTimeMenu .time-start').on('changeTime', function() {
+  $('#mainTimeMenu .time-end').text($(this).val());
+  });
+
+
+  $("#addAppointmentForm").click(function(e) {
+  e.preventDefault();
+    $("#appointmentForm").toggleClass("hide");
+    $("#removeAppointmentForm").toggleClass("hide");
+    // $("#addObject").toggleClass("hide");
+    // $("#addObjectContainer").toggleClass("hide");
+    // $("#andSign").toggleClass("hide");
+    // $("#secondObject").toggleClass("hide");
+  });
+  
+
+
+
+    

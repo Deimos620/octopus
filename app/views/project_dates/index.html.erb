@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Dates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_dates.each do |project_date| %>
+      <tr>
+        <td><%= link_to 'Show', project_date %></td>
+        <td><%= link_to 'Edit', edit_project_date_path(project_date) %></td>
+        <td><%= link_to 'Destroy', project_date, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project date', new_project_date_path %>

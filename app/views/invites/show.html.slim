@@ -1,0 +1,72 @@
+css:
+  .invite { max-width: 800px; margin-left: auto; margin-right: auto}
+  .invite ul li {font-size: 16px; margin-bottom: 20px}
+  .invite ul li .subheading {color: #cc0000; font-size: 16px; margin-right: 10px; float: left; font-weight: bold; text-transform: uppercase}
+  .invite ul li .message {background: #eee; padding: 10px; font-style: italic}
+.container
+  .project-headline
+    = render "/shared/project_headline", project_id: @participant.project_id
+    .breadcrumbs
+      ul.breadcrumb
+        li
+          = link_to projects_path
+            i.fa.fa-home
+        li
+          = link_to invites_path
+            |All Invites
+        li.active
+          = @participant.project.full_title
+  .row
+    .panel.panel-octopus.invite
+      .panel-body
+        - if @participant.can_abdicate?
+          = render "/invites/rsvp_buttons", invite: @participant
+        - else
+          h1
+            |AS THE ONLY ORGANIZER YOU CAN'T CHANGE YOUR RSVP UNTIL YOU ADD ANOTHER ORGANIZER. 
+        hr/
+        ul.list-unstyled
+          - if @participant.invitor.present?
+            li 
+              .subheading
+                |INVITED BY:
+
+              = @participant.invitor.name
+          - if @participant.message
+            li
+              .subheading
+                |MESSAGE FROM&nbsp;
+                = @participant.invitor.first_name
+                |:
+              br/
+              .message
+                em
+                  = @participant.message
+            li
+              .subheading
+                |DATES & TIME
+              br/
+              |DATES:&nbsp;
+              = @participant.project.prep_start_datetime.strftime("%B %e, %Y ")
+              | - 
+              = @participant.project.prep_end_datetime.strftime("%B %e, %Y ")
+              br/
+              |FROM:&nbsp;
+
+              = @participant.project.time_start.strftime("%l:%M %P")
+              | - 
+              = @participant.project.time_end.strftime("%l:%M %P")
+          - if @participant.project.long_description
+            li
+              .subheading
+                |DESCRIPTION:
+              = @participant.project.long_description
+          - if @participant.project.default_address
+            li
+              .subheading
+                |ADDRESS:
+              = link_to @participant.project.default_address.google_maps_link, target: "_blank"
+                = @participant.project.default_address.full_address
+
+
+      

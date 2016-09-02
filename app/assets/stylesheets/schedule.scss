@@ -1,0 +1,88 @@
+
+.panel-date  {min-height: 600px}
+.panel-date a i {color: $md_gray}
+.panel-date .panel-heading {background: #fff}
+.available-false { background: url(/assets/diag-stripe.gif); background-repeat: repeat;}
+.panel-date .available-false h2 {text-align: center; color: $md_gray}
+.panel-date .current-false { background: $xlt_gray}
+.panel-date .available-false .current-false {background-color: transparent; background: url(/assets/diag-stripe.gif); background-repeat: repeat;}
+.panel-date ul .event li {width:100%}
+.panel-dateul .event li .time {width: 100px; vertical-align: top; float: left}
+.panel-date l .event li .appointment-details {float: left }
+
+.panel-date  ul li{ padding:10px 0px; border-bottom: solid 1px $lt_aqua;  min-height: 50px; width:100%; }
+.panel-date   ul  li .appt-time {font-weight: bold; width:80px; vertical-align: top; height: 100%; margin-left: 10px; color: $dk_aqua}
+.panel-date  ul li .appointment-desc span { margin-right: 5px}
+.panel-date  ul li .appointment-desc { display:inline}
+.panel-date  ul li .appointment-desc a { font-size: 18px; margin-right: 5px; color: $md_aqua}
+.panel-date  ul li .appointment-desc a:hover {  color: $md_orange}
+.panel-date  ul li .approval{  width: 100px}
+
+.pending {background: #eee; font-style: italic}
+.reschedule {background: #ccc; text-decoration: line-through}
+
+
+.widget-schedule  .schedule-list {list-style: none}
+.widget-schedule .schedule-list .available-true, .widget-schedule .schedule-list .available-false
+
+  {display: inline-block;  height: 100%; width: 100%; margin-bottom: -1px; border: solid 1px #eee;
+   padding: 0px; margin-left:-20px }
+
+
+
+  .widget-schedule .schedule-list .date-box
+  {  float:left; font-size: 11px; text-align: center; text-transform: uppercase; background: #444; color: #fff;
+                                   height: 100%; min-height: 75px; vertical-align: middle; width: 75px; 
+                                    padding-top: 6px; margin-right: 10px; border: solid 1px #ccc}
+
+  .widget-schedule .schedule-list .date-info-box
+    {     padding: 5px 5px 5px 20px; width:100%; height: 100%; min-height: 70px; }
+
+  .widget-schedule .schedule-list li .date-box .date{font-size: 34px; font-weight: 800; line-height: 32px;  }
+  .widget-schedule .schedule-list li .date-box .weekday{  line-height: 12px;  color: #eee; font-size: 10px}
+  .widget-schedule .schedule-list li .date-box .month{ font-size: 10px; color: #eee}
+  .widget-schedule .schedule-list  .available-true:hover  {background: #eee}
+  .widget-schedule .schedule-list li:hover .date-box {background: $md_orange}
+
+  .widget-schedule .schedule-list  .today-true , 
+  .widget-schedule .schedule-list a .today-true  
+    {border: 2px solid $lt_aqua}
+
+  .widget-schedule .schedule-list .current-false,  
+  .widget-schedule .schedule-list .available-true .current-false:hover 
+    {background: #eee}
+  .widget-schedule .schedule-list .current-false .date-box,   
+  .widget-schedule .schedule-list .available-false .date-box
+    {background: #777}
+  .widget-schedule .schedule-list .current-false:hover  .date-box, 
+  .widget-schedule .schedule-list .available-false:hover  .date-box 
+    {background: #999}
+  .widget-schedule .schedule-list .available-false {
+    background: url(/assets/diag-stripe.gif);
+    background-repeat: repeat;
+    height: 100%; min-height: 70px;
+    // height: 100%;
+    margin-bottom: 3px;
+
+  }
+
+  .widget-schedule .schedule-list  .available-false .current-false:hover , 
+  .widget-schedule .schedule-list  .available-false .current-true:hover {
+    background: url(/assets/diag-stripe.gif);
+    background-repeat: repeat;
+    // height: 100%;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+  }
+
+  .widget-schedule .schedule-list .available-false .date-info-box{
+    font-size: 24px;
+    color: $md_gray;
+    font-style: italic;
+    font-weight: lighter;
+    // text-align: center;
+    padding-top: 15px;
+  }
+
+  .widget-schedule .pagination{ padding: 2px; margin: 0; width:100%; text-align: right}
+

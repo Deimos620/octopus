@@ -1,0 +1,21 @@
+- @title = "What Project is your List for?" 
+
+.container
+  h3.heavy.text-center.pt20
+    |Choose what kind of list you are making
+   
+  .panel-row.panel-row-700
+    .panel.panel-octopus style="border: 2px solid #eee; float:left"
+      div width="50%" style="border: 2px solid #eee; float:left"
+      /   h4
+      /     strong
+      /       |For project like a guest list, invite list, announcement list?
+      /   = link_to list_project_path, class: 'btn btn-aqua btn-block'
+      /     |
+      / div width="50%" style="border: 2px solid #eee; float:left"
+      /   h4
+      /     strong
+      /       |Different, like holiday cards or thank you list
+      /   = link_to new_list_path, class: 'btn btn-orange btn-block'
+      /      |OTHER LIST
+   

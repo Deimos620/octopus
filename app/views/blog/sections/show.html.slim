@@ -1,0 +1,11 @@
+.container style="max-width: 1200px"
+  .row
+    .col-xs-12
+      .section-hero
+        = image_tag "default-ads/default-300x250.jpg", style: "height: 150px"
+      hr.mb10
+    .col-md-8.col-sm-7.pt10
+      - @articles.each do |article|
+        = render "blog/shared/article_lists", article: article
+    .col-md-4.col-sm-5
+      = render "blog/shared/sidebar"

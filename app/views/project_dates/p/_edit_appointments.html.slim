@@ -1,0 +1,25 @@
+
+
+/ -if @chosen_event.blank?
+/   - if not @project_date.has_maxiumum_visits?
+/     button class="btn btn-orange btn-md center-block mTop20" id="addAppointmentForm"
+/       i.fa.fa-plus
+/       |NEW APPOINTMENT
+/   - if @project_date.has_maxiumum_visits?
+/     |There are no more appointments available today.
+/   - else
+/     = render  partial: 'project_dates/p/new_appointment_form' 
+/ -else
+/   - if not @project_date.has_maxiumum_visits?
+/     / =link_to project_project_date_path(project_date_id: @project_date.id, projct_id: @project.id), class: "btn btn-orange btn-md center-block mTop20"
+/     /   i.fa.fa-plus
+/     /   |NEW APPOINTMENT
+/     button class="btn btn-orange btn-md center-block mTop20" id="addAppointmentForm"
+/       i.fa.fa-plus
+/       |NEW APPOINTMENT
+/   / = render  partial:'project_dates/p/edit_appointment_form'
+button class="btn btn-orange btn-md center-block mTop20" id="addAppointmentForm"
+  i.fa.fa-plus
+  | NEW APPOINTMENT
+= render  partial: 'project_dates/p/new_appointment_form' 
+     

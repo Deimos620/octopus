@@ -1,0 +1,44 @@
+ .widget-panel.about-project
+  .widget-title
+    |project info
+    - if current_user.can_edit(@project.id)
+      = link_to project_path(id: @project.id), class: 'btn btn-orange-alt btn-xs pull-right'
+        i.fa.fa-pencil
+        | Edit
+  ul.list-unstyled
+    li
+      strong
+        |ORGANIZERS:&nbsp;
+      - if @project.project_organizers.present?
+        = @project.project_organizers.map{ |r| link_to(r.participant.name, project_participant_path(project_id: r.participant.project_id, id: r.id))}.join(" & ").html_safe
+
+      
+    li
+      strong
+        |RECIPIENTS:&nbsp;
+      - if @project.has_recipients? or  @project.honored_guests.present?
+        = render partial: "/projects/p/recipient_names"
+
+   
+       
+      -else
+        em
+          |No recipients added
+    - if @project.default_address.present?
+      li
+        strong
+          |ADDRESS:&nbsp;
+        br/
+        = render partial: "/projects/p/address"
+    - if @project.has_diet_restrictions_or_favorites?
+      li
+        strong
+          |ALLERGIES & DIET RESTRICTIONS:&nbsp;
+        br/
+        = @project.restrictions.each.map{ |r| r.name }.join(",  ")
+    - if @project.notes.present?
+      li
+        strong
+          |HOUSEHOLD FAVORITES:&nbsp;
+        br/
+        = @project.notes

@@ -1,0 +1,23 @@
+table style="background: #fff; width: 600px; padding: 20px; margin-left: auto; margin-right:auto"
+  tr
+    td  style="width: 100%; text-align:center;"
+      h2 style=" margin-bottom: 10px"
+        - if @participant.user.present?
+          |Hi&nbsp;
+          = @participant.user.first_name
+          |,
+        strong
+          = @new_rsvps.count
+        |  New RSVPS
+        table style="width: 100%; border: #eee 1px solid "
+          - @new_rsvps.each do |participant|
+            tr
+              td style="padding: 5px; border: #eee 1px solid; width: 100px"
+                = participant.name
+              td style="padding: 5px; border: #eee 1px solid "
+                = participant.status
+       
+        div style="text-align: center; font-size: 22px"
+          = link_to  project_participants_url(project_id: @project.id, ref: @ref), style: "text-transform:uppercase, font-weight: bold;  color:#fff;  display: inline-block; padding: 6px 12px; margin-bottom: 0; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle;  background-image: none; border: 1px solid transparent;border-radius: 4px; background-color: #7F1418; border-color: #933F32;     text-decoration: none; ", target:"_blank"
+            |CLICK HERE TO VIEW
+       

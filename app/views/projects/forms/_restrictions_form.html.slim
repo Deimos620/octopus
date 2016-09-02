@@ -1,0 +1,38 @@
+= simple_form_for @project, url: project_update_restrictions_path(project_id: @project.id, source: @source), multipart: true do |f|
+  = hidden_field_tag :source, value: "restrictions"
+  .panel-body
+
+    = f.error_notification
+    = f.hidden_field :editor_contact_id, value: current_user.id
+    .form-group
+      fieldset
+        label
+          strong.dk-aqua
+            |Household Diet
+        .custom-checkboxes
+          .row
+            = hidden_field_tag "project[restriction_ids][]", nil 
+            - @restrictions.diet.each do |restriction|
+              .col-sm-6
+                = check_box_tag  "project[restriction_ids][]", restriction.id, @project.restrictions.include?(restriction), id: dom_id(restriction)
+                = label_tag dom_id(restriction), restriction.name 
+      hr/
+      fieldset
+        label
+          strong.dk-aqua
+            |Household Allergies
+        .custom-checkboxes
+          .row
+            = hidden_field_tag "project[restriction_ids][]", nil 
+            - @restrictions.allergy.each do |restriction|
+              .col-sm-6
+                = check_box_tag  "project[restriction_ids][]", restriction.id, @project.restrictions.include?(restriction), id: dom_id(restriction)
+                = label_tag dom_id(restriction), restriction.name 
+      hr/
+      .form-group
+        = f.input :notes, rows: 5, label: 'Food Favorites', placeholder_text: 'Chocolate, Cheese, Salmon...'
+  .panel-footer
+    = f.button :submit, value: 'SAVE & NEXT ', :class => 'btn btn-green btn-lg btn-block'
+    = link_to 'CANCEL',  projects_path, :class => 'btn btn-default  ml5'
+
+

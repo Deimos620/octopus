@@ -1,0 +1,25 @@
+
+- first_name: Hildegarde
+  last_name: Jones
+  user_id: 2
+  editor_user_id: 2
+  is_default: true
+  slug: hildegarde
+
+- first_name: Clara
+  last_name: Woznicki
+  user_id: 2
+  editor_user_id: 2
+  slug: clara
+
+- first_name: Grace
+  last_name: Park
+  user_id: 2
+  editor_user_id: 2
+  slug: grace
+
+- first_name: Joe
+  last_name: Lipz
+  user_id: 2
+  editor_user_id: 2
+  slug: joe

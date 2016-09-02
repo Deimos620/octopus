@@ -1,0 +1,119 @@
+
+- name: title
+  editor_user_id: 2
+  kind: 1
+  label: 1
+
+- name: description
+  editor_user_id: 2
+  kind: 1
+  label: 2
+
+- name: keywords
+  editor_user_id: 2
+  kind: 1
+  label: 3
+
+- name: site_name
+  editor_user_id: 2
+  kind: 1
+  label: 4
+
+- name: image
+  editor_user_id: 2
+  kind: 1
+  label: 5
+
+- name: article
+  editor_user_id: 2
+  kind: 1
+  label: 6
+
+- name: url
+  editor_user_id: 2
+  kind: 1
+  label: 7
+
+
+
+  #
+
+
+- name: og:title
+  editor_user_id: 2
+  kind: 2
+  label: 1
+
+- name: og:description
+  editor_user_id: 2
+  kind: 2
+  label: 2
+
+# - name: keywords
+#   editor_user_id: 2
+#   kind: 2
+#   label: 3
+
+- name: og:site_name
+  editor_user_id: 2
+  kind: 2
+  label: 4
+
+- name: og:image
+  editor_user_id: 2
+  kind: 2
+  label: 5
+
+- name: og:type
+  editor_user_id: 2
+  kind: 2
+  label: 6
+
+- name: og:url
+  editor_user_id: 2
+  kind: 2
+  label: 7
+
+  #
+
+- name: twitter:title
+  editor_user_id: 2
+  kind: 3
+  label: 1
+
+- name: twitter:description
+  editor_user_id: 2
+  kind: 3
+  label: 2
+
+# - name: keywords
+#   editor_user_id: 2
+#   kind: 3
+#   label: 3
+
+- name: og:site_name
+  editor_user_id: 2
+  kind: 3
+  label: 4
+
+- name: witter:image:src
+  editor_user_id: 2
+  kind: 3
+  label: 5
+
+
+
+- name: twitter:url
+  editor_user_id: 2
+  kind: 3
+  label: 7
+
+- name: twitter:card
+  editor_user_id: 2
+  kind: 3
+  label: 8
+
+- name: twitter:site
+  editor_user_id: 2
+  kind: 3
+  label: 9

@@ -1,0 +1,47 @@
+- @ref = "footer"
+footer#blog-footer
+  a href="http://www.blog.octopus.com/" 
+    = image_tag 'https://s3-us-west-2.amazonaws.com/oct-alpha/layout/octopus-logo-sm.png', alt: 'Octopus',   style:" width: 150px; margin-left: auto; margin-right: auto"
+
+  ul#footer-social.social-row.list-unstyled.list-inline
+    - @ref = "footer"
+    = render partial: 'blog/shared/main_social', ref: @ref
+   
+  ul#footer-info.list-inline 
+    li style= "border-right: solid 1px #ccc"
+      a href="/blog-about"   About
+    li style= "border-right: solid 1px #ccc"
+      a href="/blog-advertising"   Advertise
+    li style= "border-right: solid 1px #ccc"
+      a href="/about/blog-sitemap"  Site Map
+    li style= "border-right: solid 1px #ccc"
+      a href="/about/blog-press"  Press Center
+    li style= "border-right: solid 1px #ccc"
+      a href="/about/blog-faq"  FAQ
+ 
+    li style= "border-right: solid 1px #ccc"
+      a href="/about/blog-contact-us"  Contact Us
+    li style= "border-right: solid 1px #ccc"
+      a href="/blog-newsletter"  Newsletter
+    li style= "border-right: solid 1px #ccc"
+      a href="/contributors"   Pretty Handy Octopus Contributors 
+    li style= "border-right: solid 1px #ccc"
+      a href="/about/ouroctopus-jobs"  Jobs
+    li
+      a href="/rss"  RSS
+  p.privacy-info
+    | Use of this site constitutes acceptance of our  
+    a href="/privacy-policy"   
+      |  user agreement   
+    | (effective 02.22.16) and   
+    a href="/privacy-policy"   
+      |  privacy policy  
+    | (effective 02.22.16)
+    / = succeed "." do
+    /   a href="http://www.wired.com/2015/11/affiliate-link-policy/" onclick=("var x=&quot;.tl(&quot;;s_objectID=&quot;http://www.wired.com/2015/11/affiliate-link-policy/_1&quot;;return this.s_oc?this.s_oc(e):true")  Affiliate link policy
+    / = succeed "." do
+    /   a href="http://www.condenast.com/privacy-policy#privacypolicy-california" onclick=("var x=&quot;.tl(&quot;;s_objectID=&quot;http://www.condenast.com/privacy-policy#privacypolicy-california_1&quot;;return this.s_oc?this.s_oc(e):true")  Your California privacy rights
+    |  The material on this site (including, but not limited to,  videos, patterns, text, images, and diagarams)  may not be copied, distributed, transmitted, cached or otherwise used, except with the express, prior written
+  
+    a href="/reprints-permissions"   
+      |  permission of Octopus or Pretty Handy Octopus Blog

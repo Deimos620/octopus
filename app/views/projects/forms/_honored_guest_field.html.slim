@@ -1,0 +1,5 @@
+.nested-fields.form-inline.mb10
+  = f.text_field :name, label: false , placeholder:"Honored Guest Name", required: true, class: 'form-control mr20', style: 'width: 220px'
+  = f.hidden_field :participant_title_id, value: participant_title_code_to_title(params[:participant_title])
+  span
+    = link_to_remove_association "remove", f, style: "font-size: 12px; color: #{}999; font-weight: normal"

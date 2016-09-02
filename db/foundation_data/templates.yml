@@ -1,0 +1,47 @@
+
+- title: 'Wedding'
+  icon: 'octopus_wedding'
+  kind: 1
+  wedding_related: true
+  rank: 1
+  project_type: 'WeddingPartyProject'
+
+- title: 'New Baby Meal Deliveries'
+  icon: 'octopus_new_baby_meal_delivery'
+  kind: 2
+  baby_related: true
+  rank: 2
+  project_type: 'NewBabyMealDeliveryProject'
+
+- title: 'Baby Shower'
+  icon: 'octopus_baby_shower'
+  kind: 1
+  baby_related: true
+  rank: 3
+  project_type: 'BabyShowerPartyProject'
+
+- title: 'Potluck Thanksgiving'
+  icon: 'octopus_thanksgiving'
+  kind: 1
+  rank: 4
+  project_type: 'ThanksgivingPartyProject'
+
+- title: 'Basic Party'
+  icon: 'octopus_party'
+  kind: 1
+  rank: 5
+  project_type: 'PartyProject'
+
+
+- title: 'Wedding/Bridal Shower'
+  icon: 'octopus_wedding_shower'
+  kind: 1
+  wedding_related: true
+  rank: 6
+  project_type: 'WeddingShowerPartyProject'
+
+- title: 'Basic Meal Delivery'
+  icon: 'octopus_meal_delivery'
+  kind: 2
+  rank: 7
+  project_type: 'MealDeliveryProject'

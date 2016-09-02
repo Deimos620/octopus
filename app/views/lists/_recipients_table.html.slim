@@ -1,0 +1,33 @@
+table.octopus-table
+  thead
+    th width= '130px'
+      |Name
+    th 
+      |Address
+    th width= '130px'
+      | Updated
+    th width= '110px'
+      |Added by
+    / th width= '90px'
+    /   | Status
+ 
+  tbody
+
+    / - @list.guests.each do |guest|
+    = @list.guests.count
+      / tr
+      /   td
+      /     = guest.contact.name
+      /   td
+      /     small
+      /       = guest.contact.default_address.full_address
+      /   td
+      /     small
+      /       em
+      /         = guest.updated_at.strftime("%D at %l:%M %P ")
+      /   td
+      /     small
+      /       em
+      /         / = guest.editor
+
+     

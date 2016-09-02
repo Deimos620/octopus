@@ -1,0 +1,43 @@
+= simple_form_for @project, url: project_update_available_dates_path(project_id: @project.id) do |f|
+  = hidden_field_tag :source, value: "available dates"
+  .panel-body
+
+
+    = f.error_notification
+    = f.hidden_field :editor_contact_id, value: current_user.id
+    -if @events.present? 
+      div style="text-transform:none; color: #999; font-style:italic, line-height:normal; margin-bottom:20px; " 
+        em style="font-size:18px; line-height:normal"
+          |If a date already has an appointment, you must request a reschedule before making the date unavailable.
+    - if  @project.project_dates.blank? 
+      hr/
+      .form-group
+        h1.text-center 
+          strong 
+            |You have not added any dates for meal deliveries yet.
+        = link_to "SET DATE RANGE",  project_edit_date_range_path(project_id: @project.id, source: 'show', :anchor =>"topwrapper"),   data: {no_turbolink: true}, :class => 'btn btn-warning btn-lg btn-block mt10'
+        hr/
+   
+        = link_to 'ADD DATES LATER', project_path(@project), :class => 'btn btn-default btn-lg btn-block', :style => 'margin-bottom:-5px'  
+
+    - else
+      .form-group
+        = hidden_field_tag "project[project_date_ids][]" 
+        - @project.project_dates.order(schedule_date: :asc).each do |date| 
+          .custom-checkboxes
+            -if date.events.present? 
+              span style="color: #cacaca; font-size:20px"
+                i.fa.fa-check-square-o
+              = check_box_tag "project_date_ids[]", date.id, date.available,  id: dom_id(date), :style =>'    visibility: hidden;'
+            = check_box_tag "project_date_ids[]", date.id, date.available,  id: dom_id(date)
+            =  label_tag  dom_id(date), date.schedule_date.strftime("%A, %B %d, %Y"),  :class => "checkbox-label "  
+            - if date.events.present?
+              span style="font-size:12px; color:#999"
+                = date.events.count 
+                =  "apppointment".pluralize(date.events.count)
+  - if @project.project_dates.present?
+    .panel-footer
+      = f.button :submit, value: 'UPDATE AVAILABILITY ', :class => 'btn btn-green btn-lg btn-block'
+      = link_to 'CANCEL',  projects_path, :class => 'btn btn-default  ml5'
+
+

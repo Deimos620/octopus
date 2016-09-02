@@ -1,0 +1,28 @@
+.container 
+  section.page-signup.mt50
+ 
+    .form-container
+      = image_tag 'branding/octopus-logo-lg.png', alt: 'Octopus', style: "padding: 0 50px"
+      hr/
+      = simple_form_for(resource, as: resource_name,  url: password_path(resource_name), html: { method: :post })  do |f|
+        = f.error_notification
+       
+        form.form-horizontal
+          h2.text-center
+            strong
+              |Forgot your password?
+          hr/
+          fieldset
+            .form-group
+              .input-group.input-group-lg
+                span.input-group-addon
+                  i.fa.fa-envelope
+                = f.email_field :email, required: true, autofocus: true, label: false, class: 'form-control', placeholder: 'ENTER YOUR ACCOUNT EMAIL'
+          
+            .form-group
+              = f.button :submit, "GET RESET LINK", class: 'btn btn-aqua btn-block btn-lg'
+
+        section
+          p.text-center
+            = link_to "Sign In",  new_session_path(resource_name) 
+

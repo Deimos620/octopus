@@ -1,0 +1,45 @@
+table style="background: #fff; width: 600px; padding: 20px; margin-left: auto; margin-right:auto"
+  tr
+    td width="100%"
+      h1 
+        strong
+          |Hi  
+          =@recipient.first_name
+          |,
+        br/
+        br/
+
+      - if @email_kind.label == "event-created"
+        |You have created an appointment on
+        = @event.date_start
+        | at
+        = @event.time_start
+        | until
+        = @event.time_end
+      -elsif @email_kind.label == "response-add" 
+
+        strong
+          =@event.participant.name
+        |has signed up to visit on
+        = @event.date_start
+        |at
+        = @event.time_start
+        |until
+        = @event.time_end
+        |.
+        br/
+        br/
+        |This appointment is
+        strong
+          |PENDING
+        |until you approve it.  
+        br/
+        br/
+        = link_to project_project_date_url(project_id: @event.project_date.project_id, id: @event.project_date_id, ref: @ref), target: "_blank",:style=>'text-transform:uppercase, font-weight: bold; font-size: 20px;'
+          |APPROVE NOW
+        br/
+        br/
+        = link_to project_project_date_url(project_id: @event.project_date.project_id, id: @event.project_date_id, ref: @ref), target: "_blank", :style=>'text-transform:uppercase, font-weight: bold; font-size: 20px;'
+          |REQUEST RESCHEDULE NOW
+
+        

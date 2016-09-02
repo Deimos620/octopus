@@ -1,0 +1,50 @@
+.container
+  h3.heavy.text-center.pt20
+    |Great! You Selected
+    span.dk-aqua
+      = @project.subcategory_name
+    = link_to  project_kinds_path
+      sup
+        i.fa.fa-pencil
+  
+  .panel-row.panel-row-700
+    .panel.panel-octopus style="border: 2px solid #eee; float:left"
+      div width="50%" style="border: 2px solid #eee; float:left"
+        = simple_form_for @project, multipart: true do |f|
+
+          h4
+            strong
+              |Organizer
+          = f.hidden_field :type, value:  @project.type
+          = hidden_field_tag :participant_role_type,  "OrganizerParticipantRole"
+
+          = hidden_field_tag :source, value:  @source
+          = f.fields_for :participants do |ff|
+            = ff.hidden_field :email, value: current_user.email
+            = ff.hidden_field :status, value: 'accepted'
+            = ff.hidden_field :user_id, value: current_user.id
+           
+          = f.submit "Organizer"
+          / = f.submit "Comment", :type => :image, :src => 'https://s3-us-west-2.amazonaws.com/makeparty/app/roles/organizer.png', alt: 'Organizer', width: '75px' 
+
+          / = link_to add_project_path(id: @project.id, project_type_code: params[:project_type_code], participant_role_code: 1), data: {no_turbolink: true}
+             / = image_tag 'https://s3-us-west-2.amazonaws.com/makeparty/app/roles/organizer.png', alt: 'Organizer', width: '75px'
+      div width="50%" style="border: 2px solid #eee; float:left"
+        = simple_form_for @project, multipart: true do |f|
+          = f.hidden_field :type, value:  @project.type
+          = hidden_field_tag :participant_role_type,  "RecipientOrganizerParticipantRole"
+
+          = hidden_field_tag :source, value:  @source
+          = f.fields_for :participants do |ff|
+            = ff.hidden_field :email, value: current_user.email
+            = ff.hidden_field :status, value: 'accepted'
+            = ff.hidden_field :user_id, value: current_user.id
+            / = ff.hidden_field :invitor_participant_id
+            / = ff.hidden_field :editor_participant_id, value: @current_user_participation 
+          h4
+            strong
+              |Organizer/Recipient
+            = f.submit "Organizer/Recipient"
+          / = link_to add_project_path( id: @project.id, project_type_code:  params[:project_type_code] , participant_role_code: 2), data: {no_turbolink: true}
+          /    = image_tag 'https://s3-us-west-2.amazonaws.com/makeparty/app/roles/org-recip.png', alt: 'Organizer/Recipient', width: '75px'
+ 

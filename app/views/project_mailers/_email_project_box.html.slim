@@ -1,0 +1,13 @@
+div style= "padding: 15px; background: #ebf2f1; border: solid 2px #94BAB3"
+  - if @project.is_meal_delivery?
+    p style= "font-size: 26px; line-height: 32px"
+      strong
+        = @project.full_title
+    p
+      = @project.long_description
+    p style= "font-size: 20px; font-weight:bold"
+      = @project.prep_times("full")
+    p 
+      = @project.primary_address.full_address
+  - else
+    |NOT MEAL DELIVERY

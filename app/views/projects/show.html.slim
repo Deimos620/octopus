@@ -1,0 +1,7 @@
+- @source = "show project"
+- @title = "#{@project.title}" 
+
+.container.pt50
+  - if @project.is_meal_delivery?
+    = render partial: '/projects/p/meal_delivery_show'
+  

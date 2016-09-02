@@ -1,0 +1,70 @@
+.container.pt50
+  / = render 'shared/alerts'
+  .row.mt10
+    .pull-right style="margin-bottom: -30px"
+      = paginate @articles , :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm"
+
+    h1
+      i.fa.fa-copy.color-ltblue
+      |   Articles
+  .row.info-table 
+    .col-md-2.col-sm-2.pl0
+      = link_to new_inside_blog_post_path, class: 'btn btn-aqua btn-md'
+          i.fa.fa-plus
+          |  NEW ARTICLE
+      / = render 'sidebar' 
+    .col-md-10.col-sm-10.pr0
+      
+      .navbar.navbar-default style="margin-bottom: -1px"
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.collapsed data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"
+              span.sr-only
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+          a.navbar-brand
+            -if @is_filtered == true
+              / span.color-dkblue
+              /   = @page_count
+              / strong
+              /   |  &nbsp; PAGES
+            - elsif @is_searched == true
+              span.color-dkblue
+                = @page_count
+              strong
+                |  &nbsp; ARTICLES
+            -else
+              span.color-dkblue
+                = BlogPost.count
+              strong
+                |  &nbsp; ARTICLES
+          .collapse.navbar-collapse#bs-example-navbar-collapse1
+            form.navbar-form.navbar-left role="search"
+            /   .form-group
+            /     = form_tag(admin_pages_path, :method => "get", id: "search-form") do
+            /       = text_field_tag :search, params[:search], placeholder: "Search Pages", class: 'form-control'
+            /       = submit_tag "Search", class: "btn btn-defualt "
+
+            / .pull-right.mt10.hide
+            /   = render 'shared/ordering_select'
+            / = form_tag(inside_blog_posts_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do
+            /   .form-group
+            /     = text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control'
+            /     = submit_tag "Search", class: "btn btn-info search" 
+            
+          / -if @set_filter.present?
+          /   ul.list-inline.ml10
+          /     li
+          /       .badge.badge-filter
+          /       | filter name     
+      .panel.panel-default.br3
+        / = render 'list' 
+        = render 'list_images' 
+
+  .row
+    .pull-right style="margin-top:-20px"
+      = paginate @articles , :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm"
+
+
+      

@@ -1,0 +1,85 @@
+
+- title: About
+  slug: blog-about
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: About Page.
+
+- title: FAQ
+  slug: blog-faq
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: FAQ Page.
+
+- title: Adverise
+  slug: blog-advertising
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: Blog Advertise Page.
+
+- title: Press
+  slug: blog-press
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: Blog Press Page.
+
+- title: Sitemap
+  slug: blog-sitemap
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: Blog Sitemap Page.
+
+- title: Contact Us
+  slug: blog-contact-us
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: Blog Contact Us Page.
+
+- title: Contributors
+  slug: contributors
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: Contributors Page
+  special: true
+
+- title: Jobs
+  slug: ouroctopus-jobs
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: Jobs Page
+  special: true
+
+- title: RSS
+  slug: rss
+  editor_user_id: 2
+  type: "BlogPostStaticPage"
+  blog_author_id: 2
+  published_datetime: 2016-01-11
+  status: 5
+  body: RSS Page
+  special: true
+

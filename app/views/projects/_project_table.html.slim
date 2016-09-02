@@ -1,0 +1,36 @@
+tr width= "100%"
+  td class="visible-md hidden-xs visible-sm visible-lg"
+    i class="#{p.status_icon}"
+    
+  td class="visible-md hidden-xs hidden-sm visible-lg"
+    .div style="text-transform: uppercase, font-weight: bold"
+      small
+        em
+          / .div class="label label-kind-#{p.project.kind_code} "
+          = p.project.kind
+  td
+    = link_to project_dashboard_index_path(project_id: p.project.id)
+      = p.project.full_title
+    - if p.can_organize?
+      = link_to project_path(id: p.project_id), class: 'btn btn-orange-alt btn-xs ml20'
+        |EDIT
+  td class="visible-md hidden-xs visible-sm visible-lg"
+    small
+      em.color-md-gray
+        -p.participant_roles.each do |pr|
+          =pr.kind
+        / |role
+  td class="visible-md hidden-xs visible-sm visible-lg"
+    small
+      em.color-md-gray
+        = p.project.prep_times("full")
+  td class="visible-md hidden-xs visible-sm visible-lg"
+    / = link_to project_dashboard_index_path(project_id: p.project.id), class: 'btn btn-xs btn-aqua'
+    /   strong
+    /     |VIEW
+    - if p.can_abdicate?
+      = link_to project_invite_path(project_id: p.project.id, id: p.id), class: 'btn btn-xs btn-violet'
+        strong
+          |EDIT RSVP
+
+

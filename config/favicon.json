@@ -1,0 +1,40 @@
+{
+    "master_picture": "app/assets/images/favicon.ico",
+    "favicon_design": {
+        "ios": {
+            "picture_aspect": "background_and_margin",
+            "background_color": "#ffffff",
+            "margin": "14%",
+            "app_name": "Octopus"
+        },
+        "desktop_browser": [
+
+        ],
+        "windows": {
+            "picture_aspect": "no_change",
+            "background_color": "#da532c",
+            "on_conflict": "override",
+            "app_name": "Octopus"
+        },
+        "android_chrome": {
+            "picture_aspect": "no_change",
+            "theme_color": "#ffffff",
+            "manifest": {
+                "name": "Octopus",
+                "display": "browser",
+                "orientation": "not_set",
+                "on_conflict": "override"
+            }
+        },
+        "safari_pinned_tab": {
+            "picture_aspect": "black_and_white",
+            "threshold": 91.40625,
+            "theme_color": "#002495"
+        }
+    },
+    "settings": {
+        "compression": 5,
+        "scaling_algorithm": "Lanczos",
+        "error_on_image_too_small": false
+    }
+}

@@ -1,0 +1,93 @@
+/ css:
+/   / .panel-signin, .panel-sign-up {width: 500px; margin-left: auto; margin-right:auto}
+
+/ .container
+/   .panel.panel-octopus.panel-signin.mt50
+/     h2
+/       |Log In
+/     .panel-body
+
+/       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+/         .form-inputs
+/           = f.input :email, required: false, autofocus: true 
+/           = f.input :password, required: false 
+/           = f.input :remember_me, as: :boolean if devise_mapping.rememberable? 
+
+/         .form-actions
+/           = f.button :submit, "Log in", class: 'btn btn-aqua btn-block'
+
+/     .text-left
+/       = render "devise/shared/links"
+.container
+  .page-signup.mt50
+    section
+      / a href=("#/"} {{main.brand}) 
+
+    
+     
+      .form-container
+        = image_tag 'branding/octopus-logo-lg.png', alt: 'Octopus', style: "padding: 0 50px", width: "auto"
+        hr/
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = f.error_notification
+          - if devise_mapping.omniauthable? 
+            / - resource_class.omniauth_providers.each do |provider| 
+            /   / = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) 
+            .form-group
+              = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-facebook btn-block btn-lg'
+                |Sign up with Facebook
+              = link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-gplus btn-block mt5 btn-lg'
+                |Sign up with Google
+              / = link_to user_omniauth_authorize_path(:twitter), class: 'btn btn-twitter btn-block btn-lg'
+              /   |Sign up with Twitter
+            span.line-thru OR
+          form.form-horizontal
+            fieldset
+              .form-group
+                .row.p0
+                  .col-sm-6
+                    .input-group.input-group-md
+                      = f.text_field :first_name, required: true, autofocus: true, label: false, class: 'form-control', placeholder: 'FIRST NAME'
+                  .col-sm-6
+                    .input-group
+                      = f.text_field :last_name, required: true, autofocus: true, label: false, class: 'form-control', placeholder: 'LAST NAME'
+            fieldset
+              .form-group
+                .input-group.input-group-md
+                  span.input-group-addon
+                    i.fa.fa-envelope
+                  = f.input :email, required: true, autofocus: true, label: false
+              .form-group
+                .input-group.input-group-md
+                  span.input-group-addon
+                    i.fa.fa-lock.fa-lg
+                  = f.input :password, required: true, label: false
+                  / = f.input :password, required: true, label: false,  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+                  / = f.password_field :password, required: true , label: false, class: 'form-control', placeholder: 'PASSWORD'
+              .form-group
+                .input-group.input-group-md
+                  span.input-group-addon
+                    i.fa.fa-lock.fa-lg
+                  = f.input :password_confirmation, required: true , label: false
+              .form-group.custom-checkboxes 
+                / small
+                  
+                / = label_tag :accept_terms, value: "Accept Terms & Conditions", class: 'label mr5 '
+                = check_box_tag :accept_terms, "", true
+                = label_tag :accept_terms, 'Accept Terms & Conditions'
+
+              .form-group
+                = f.button :submit, "Sign Up", class: 'btn btn-aqua btn-block btn-lg'
+
+          section
+            p.text-center
+              - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' 
+                = link_to "Forgot your password?", new_password_path(resource_name) 
+
+
+            
+            p.text-center.text-muted.text-small
+              | Already have an account?
+              = link_to new_user_session_path
+                |  Sign In
+

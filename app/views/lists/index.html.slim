@@ -1,0 +1,61 @@
+- @title = "Mailing & Guest Lists"
+.container.pt50
+  / .project-headline
+  /     = render "/shared/project_headline", project_id: @project.id
+
+  .breadcrumbs
+    ul.breadcrumb
+      li
+        = link_to projects_path
+          i.fa.fa-home
+
+      li.active
+        |Mailing Lists
+ 
+ 
+  .col-xs-12
+    h1.super
+      |Mailing Lists
+
+    .panel.panel-octopus
+      - if @lists.present?
+        table
+          thead
+            th
+              |Name
+            th align="center" width="100px"
+              |Project
+            th width= '90px'
+              | Updated
+            th width= '90px'
+              |Edited by
+            th width= '90px'
+              | Status
+         
+            tbody
+
+              - @lists.each do |list|
+                tr
+                  td
+                    = list.category_name
+                  td
+                    = list.project unless list.project_id.blank?
+                  td
+                    small
+                      em
+                        = list.updated_at.strftime("%B %e, %Y at %l:%M %P ")
+                  td
+                    small
+                      em
+                        = list.user.name
+                  td
+                    small
+                      =list.status
+                  td
+      - else
+
+          h2
+            strong
+              |You have no lists. 
+          = link_to list_types_path, class: 'btn btn-aqua btn-lg'
+            | Make a Mailing List!

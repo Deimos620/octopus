@@ -1,0 +1,62 @@
+css:
+  .smallandthick {text-transform: uppercase; font-size: 10px; letter-spacing: 2px; font-weight: 800, color: #999}
+  .panel-octopus .add-recipients {background: #eee; margin-top: 20px; padding: 20px}
+
+- @source = "Create Mailing List"
+- @title = "Create a Mailing List" 
+.container.pt50
+  .panel-row.panel-row-900 
+    .panel.panel-octopus
+      .panel-heading
+        .panel-title
+          - if @list.custom_name.present?
+            .smallandthick
+              em
+                = @list.name
+            .fa.fa-envelope-o
+            = @list.custom_name
+          -else
+            .fa.fa-envelope-o
+            = @list.name
+      .panel-body
+        / fieldset.add-recipients
+          |UPLOAD CUSTOM CSV
+          = form_tag  import_lists_path(list_id: @list.id), multipart: true 
+            .form-group
+
+              = file_field_tag :file
+            .form-group
+
+              = check_box_tag 'auto_add_to_list', true,  {:checked => "checked"} 
+              = hidden_field_tag 'import_source',  "custom"
+              label
+                |AUTOMATICALLY ADD TO GUEST LIST 
+            .form-group
+              / = hidden_field_tag :auto_add_to_list, value: true #TODO make into checkbox
+              = submit_tag "Import CSV", class: 'btn btn-success mt20'
+        fieldset.add-recipients.mt20
+          |UPLOAD GOOGLE CSV
+          = form_tag  import_lists_path(list_id: @list.id), multipart: true 
+            .form-group
+
+              = file_field_tag :file
+            .form-group
+
+              = check_box_tag 'auto_add_to_list', true,  {:checked => "checked"} 
+              = hidden_field_tag 'import_source',  "google"
+              label
+                |AUTOMATICALLY ADD TO GUEST LIST 
+            .form-group
+              / = hidden_field_tag :auto_add_to_list, value: true #TODO make into checkbox
+              = submit_tag "Import CSV", class: 'btn btn-success mt20'
+
+        - if @list.guests.present?
+          = render partial: "recipients_table"
+       
+        = link_to new_list_path, class: 'btn btn-orange btn-block btn-lg upcase'
+          i.fa.fa-plus
+          |  add  list
+          = @list.recipient_name.pluralize
+
+
+

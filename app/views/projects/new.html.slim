@@ -1,0 +1,7 @@
+- @source = "new project"
+- @title = "Create @project.full_title Project" 
+.container.pt50
+  - if @project.is_meal_delivery?
+    = render partial: '/projects/p/meal_delivery'
+  - if @project.is_party?
+

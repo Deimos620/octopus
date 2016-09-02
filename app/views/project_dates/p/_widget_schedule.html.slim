@@ -1,0 +1,33 @@
+.widget-panel.widget-schedule
+  .widget-title
+    |schedule:
+    / span style="font-weight: lighter; font-style: italic"
+    /   =@project.prep_start_datetime.strftime("%B %e, %Y ")
+    /   | 
+    /   =@project.prep_end_datetime.strftime("%B %e, %Y ")
+  ul.schedule-list
+
+    - @project_dates.order(schedule_date: :asc).each do |date|
+ 
+
+        = link_to  project_project_date_path(id: date, project_id: date.project_id)
+
+          li class= "#{@time} available-#{date.available} current-#{date.current?} today-#{date.is_today?} "
+            div class="date-box   " 
+              .month
+                = date.schedule_date.strftime("%B")
+              .date
+                = date.schedule_date.strftime("%e")
+              .weekday
+                 = date.schedule_date.strftime("%A")
+            .date-info-box
+              - if  !date.available 
+                em
+                  | THIS DATE IS UNAVAILABLE
+              - if date.events.present?
+                ul.list-unstyled.appointments.dashboard-events
+                  - date.events.order(time_start: :asc).each do |e|
+                    = render partial: "project_dates/p/appointment_detail",  locals: {e: e, location: 'dashboard', appointment_link: @appointment_link} 
+  .pagination width= "100%"
+
+    = paginate @project_dates , :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm"

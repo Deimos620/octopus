@@ -1,0 +1,9 @@
+- @title ="Choose Your Role" 
+
+- if @project.is_meal_delivery?
+  = render partial: "/projects/p/meal_delivery_roles"
+- if @project.is_wedding?
+  = render partial: "/projects/p/wedding_roles"
+/ - if @project.is_gift_shower?
+/ - if @project.is_birthday?
+/ - if @project.is_potluck?

@@ -1,0 +1,33 @@
+css:
+  .invites {background: #eee; border: solid 1px #ccc; margin: 5px  5px  15px  5px; width: 1005}
+  .invites ul li {border-bottom: solid 2px #ccc; padding: 5px}
+  .invites ul li a {color: #777}
+  .invites ul  li a:hover {color: #f0ad4e}
+  .invites ul li:hover {background: #fff}
+  .invites  .button-list li, .invites  .button-list li:hover {border:none; background: inherit; color: inherit}
+  .invites  .button-list li:hover {border:none; background: inherit; color: #fff}
+  .invites .button-list li a {color: inherit}
+- if current_user.unanswered_invites.present?
+  .panel.panel-octopus.invites
+    .panel-title
+      .fa.fa-envelope-o
+      | NEW INVITES
+    ul.list-unstyled
+      - current_user.unanswered_invites.each do |invite|
+        li
+          =link_to project_invite_path(project_id: invite.project_id, id: invite.id)
+            = invite.project.full_title
+          .button-list.pull-right style="margin-top: -6px"
+            ul.list-inline 
+              li
+                = link_to rsvp_path(id: invite.id, project_id: invite.project_id, rsvp: "accepted", widget: true), class: 'btn btn-xs btn-aqua'
+                  |ACCEPT
+              li
+                = link_to  rsvp_path(id: invite.id, project_id: invite.project_id,  rsvp: "maybe", widget: true) , class: 'btn btn-xs btn-orange'
+                  |MAYBE
+              li
+                = link_to  rsvp_path(id: invite.id, project_id: invite.project_id,  rsvp: "declined", widget: true) , class: 'btn btn-xs btn-violet'
+                  |DECLINE
+              li
+                = link_to project_invite_path(project_id: invite.project_id, id: invite.id), class: 'btn btn-xs btn-info'
+                  |VIEW

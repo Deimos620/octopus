@@ -1,0 +1,21 @@
+.nested-fields
+  .form-group.form-inline
+    = f.label :social_account_id, value: 'Category'
+    = f.select(:meta_property_category_id,  MetaPropertyCategory.default.order(name: :asc).collect {|v| [ v.name, v.id ] } ,  {},  { multiple: false , class: " chosen-select-default form-control page_type_select", id: 'page_type'   })
+
+
+  .form-group
+    = f.input :content, as: :text, class: 'form-control'
+  .form-group
+    = f.check_box :_destroy
+    = f.label :_destroy, "Remove Property"
+
+    = f.hidden_field :social_account_id, value: ''
+
+
+
+
+
+
+
+

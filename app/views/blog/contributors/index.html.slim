@@ -1,0 +1,11 @@
+.container
+  .row
+    .col-md-8
+      - BlogAuthor.all.each do |contributor|
+        article
+          = link_to blog_contributor_path(contributor)
+            h2
+              = contributor.name
+           
+    .col-md-4
+      = render "blog/shared/sidebar"

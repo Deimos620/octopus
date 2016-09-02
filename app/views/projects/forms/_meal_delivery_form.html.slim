@@ -1,0 +1,135 @@
+/ - start_date = @project.prep_start_datetime.strftime("%m %d %Y") if @project.prep_start_datetime? && @project.prep_start_datetime 
+
+/ - end_date = @project.prep_end_datetime.strftime("%m %d %Y") if @project.prep_end_datetime? && @project.prep_end_datetime 
+
+
+
+= simple_form_for @project, multipart: true do |f|
+  = hidden_field_tag :source, "new project"
+
+  .panel-body.new-meal-delivery
+    
+    = f.error_notification
+    = f.hidden_field :status, value: "active"
+    / - if @project.is_new?
+      / = f.hidden_field :type, value: @kind.project_type
+      / = f.fields_for :participants do |ff|
+      /   = ff.hidden_field :email, value: current_user.email
+      /   = ff.hidden_field :status, value: 'accepted'
+      /   = ff.hidden_field :user_id, value: current_user.id
+      /   / = ff.hidden_field :invitor_participant_id
+      /   / = ff.hidden_field :editor_participant_id, value: @current_user_participation  
+      /   = ff.hidden_field :project_id, value: @project.id
+        / = ff.fields_for :participant_roles do |fff|
+        /   = fff.hidden_field :type, value: parsing_roles(params[:participant_role_code])
+
+        / - if @title.present?
+        /   = ff.fields_for :participant_titles do |fff|
+        /     = ff.hidden_field :title, value: @title
+
+
+    .form-group
+      - if current_user.is_recipient(@project.id)
+        label.control
+          | Meal Deliveries for
+        br/
+        = f.simple_fields_for :honored_guests do |ff|
+          = render partial: '/projects/forms/honored_guest_field', locals: {f: ff}
+        = 
+      - elsif !current_user.is_recipient(@project.id)
+        label.control
+          | Who are the Meal Deliveries For?
+          abbr title="required"
+            | *
+        = f.simple_fields_for :honored_guests do |ff|
+          = render partial: '/projects/forms/honored_guest_field', locals: {f: ff}
+        .links
+          = link_to_add_association 'add honored guest', f, :honored_guests,
+      partial: '/projects/forms/honored_guest_field', class: 'btn btn-xs btn-default mt10'
+
+    .form-group
+      / = f.input :max_visits, label: "Maximum visits per day?"
+      = f.label :max_visits, label: 'Maximum visits per day?', id: 'max_visits_label'
+      = f.select(:max_visits, max_visits_menu { },  {},  { multiple: false , class: " chosen-select-default form-control ", id: 'max_visits'   })
+    .form-group
+      = f.input :long_description, label: 'Project Description' , placeholder: @project.question_2, html: {rows: 4}, required: true
+    - if @project.is_draft?
+      .form-group
+        label
+          |Date Range for Meal Deliveries (can be approximate)
+        .row
+          .col-md-5.col-sm-6.col-xs-6
+            = f.label :prep_start_datetime, label: 'Start Date', style: 'font-size: 18px; color: #666'
+            #datetimepickerStartIcon.input-group.date
+              span.input-group-addon
+                i.fa.fa-calendar
+              =  f.text_field  :prep_start_datetime, class: 'form-control', id:"datetimepickerStart"
+         
+          .col-md-5.col-sm-6.col-xs-6.pr0
+            = f.label :prep_end_datetime, label: 'End Date', style: 'font-size: 18px; color: #666'
+            #datetimepickerEndIcon.input-group.date
+              span.input-group-addon
+                i.fa.fa-calendar
+              =  f.text_field  :prep_end_datetime, class: 'form-control', id:"datetimepickerEnd"
+
+          
+    hr/
+    .form-group
+      label
+        |Earliest and Latest Time for Visits
+      #mainTimeMenu
+        .row
+          .col-md-4.col-sm-6.col-xs-6
+            = f.label :time_start, label: 'Time Start', id: 'timepickerStartLabel', style: 'font-size: 18px; color: #666'
+            .input-group.date
+              span.input-group-addon
+                i.fa.fa-clock-o
+              =  f.text_field  :time_start, required: true,  class: 'form-control time-start', id: 'timepickerStart', default: "09:00:00", placeholder: "9:00 AM"
+         
+          .col-md-4.col-sm-4.col-xs-6.pr0
+            = f.label :time_end, label: 'Time End', style: 'font-size: 18px; color: #666', id: 'timepickerEndLabel'
+            .input-group.date
+              span.input-group-addon
+                i.fa.fa-clock-o
+              =  f.text_field  :time_end, required: true, class: 'form-control time-end', id: 'timepickerEnd', default: "18:00:00", placeholder: "6:00 PM"
+    hr/
+    .subgroup-address style="background: #eee; padding: 20px"
+      = f.fields_for :addresses do |ff|
+        = f.hidden_field :primary, value: true
+        .form-group
+          =  ff.input :title, label: 'Location Title', required: false, :maxlength => 55, placeholder: @project.question_2
+        .form-group
+          label
+            |Address
+          =    ff.input :address_1,  label: false, required: false, :maxlength => 55, placeholder: 'Address 1'
+        .form-group
+          =    ff.input :address_2,  label: false, required: false, :maxlength => 55, placeholder: 'Address 2'
+        .form-group
+          .col-xs-12.col-sm-6.pl0
+            =  ff.input :city, label: false, required: false , placeholder: 'City'
+          .col-xs-12.col-sm-4.col-md-3.pl0
+            =  ff.input :us_state_id, label: false, required: false , input_html: {class: 'chosen-select-default'}, collection: USState.all
+          .col-xs-12.col-sm-4.col-md-3.pl0
+            =  ff.input :postal_code, label: false,  placeholder: 'Zip Code'
+          .form-group
+            / =  ff.association :country, selected: default_country, class: "chosen-select-default"
+            =  ff.input :country_id,  selected: default_country, label: false, required: false , input_html: {class: 'chosen-select-default'}, collection: Country.all
+  - if @project.is_new?
+    .panel-footer
+      = f.button :submit, value: 'SAVE & PREVIEW ', :class => 'btn btn-aqua btn-lg btn-block '
+      br/
+      = link_to 'CANCEL',  projects_path, :class => 'btn btn-default mt5 '
+  - else
+    .panel-footer
+      = f.button :submit, value: 'SAVE & VIEW ', :class => 'btn btn-aqua btn-lg btn-block '
+      br/
+      = link_to 'CANCEL',  project_path(id: @project.id), :class => 'btn btn-default mt5 '
+
+= hidden_field_tag "default_country", default_country 
+
+
+
+
+
+
+/ = render 'shared/chosen_select'

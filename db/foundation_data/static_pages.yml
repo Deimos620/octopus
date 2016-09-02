@@ -1,0 +1,41 @@
+
+# - title: About
+#   slug: about
+#   editor_user_id: 2
+#   published_datetime: 2016-01-11
+#   status: 5
+#   body: About Page.
+
+# - title: FAQ
+#   slug: faq
+#   editor_user_id: 2
+#   published_datetime: 2016-01-11
+#   status: 5
+#   body: FAQ Page.
+
+# - title: Advertise
+#   slug: advertising
+#   editor_user_id: 2
+#   published_datetime: 2016-01-11
+#   status: 5
+#   body: Advertise Page.
+
+# - title: Press
+#   slug: press
+#   editor_user_id: 2
+#   published_datetime: 2016-01-11
+#   status: 5
+#   body: Press Page.
+#   special: true
+
+# - title: Contact Us
+#   slug: contact-us
+#   editor_user_id: 2
+#   type: "BlogPostStaticPage"
+#   blog_author_id: 2
+#   published_datetime: 2016-01-11
+#   status: 5
+#   body:  Contact Us Page.
+#   special: true
+
+

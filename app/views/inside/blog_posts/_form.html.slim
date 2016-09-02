@@ -1,0 +1,144 @@
+/ article
+css:
+  .blog-form-accordion { border-radius: 1}
+  .blog-form-accordion .accordionTitle {font-size: 18px}
+= simple_form_for [:inside, @article ], multipart: true do |f| 
+  = f.error_notification 
+  #withFroala.panel-body
+
+    .form-group.mb10.form-inline
+      = f.label :blog_section_id, label: 'Section', id: 'blog_section_label'
+      - section_options = ['Sections', BlogSection.order(title: :asc).collect {|v| [ v.title, v.id ] } ]
+      - options = grouped_options_for_select([section_options], @article.blog_section_id)
+      = f.select :blog_section_id, options,    {include_blank: "None"},  { multiple: false , class: " chzn-select group-result form-control ", id: 'post_blog_feature_id',  :include_blank => "(no section)"   }
+
+    / .form-group.mb10 
+    /   = f.label :blog_section_id, label: 'Page Section', id: 'page_section_label'
+    /   |  &nbsp; &nbsp;
+    /   = f.select(:blog_section_id,  BlogSection.collect.each {|r| [ r.title, r.id ] }, {include_blank: true}, { multiple: false , class: " chosen-select-page_section form-control", id: 'post_blog_section_id',  :include_blank => "(no section)"  } )
+    /   -if @page.errors[:blog_section_id].present?
+    /     div.has-error.section-error
+    /       span.help-block Please select section page.
+
+    
+    .form-group.mb10.form-inline
+    
+      = f.label :blog_author_id, label: 'Author', id: 'page_author_id_label', :class=> '  '
+      - if current_user.is_editor?
+        = f.select(:blog_author_id, BlogAuthor.includes(:user).collect.each {|r| [ r.name, r.user_id ] }, {include_blank: true}, { multiple: false , class: " chosen-select-page_author form-control", id: 'post_author_id',  :include_blank => "(no author)"  } )
+      - else
+        = f.select(:blog_author_id, BlogAuthor.includes(:user).where(user_id: current_user.id).collect.each {|r| [ r.name, r.user_id ] }, {include_blank: true}, { multiple: false , class: " chosen-select-page_author form-control", id: 'post_author_id',  :include_blank => "(no author)"  } )
+
+  
+  
+    hr/
+    = f.input :title, label: 'Title', required: true, focus: true
+    
+    = f.input :lead, label: "Enter Page Lead Text", required: false, focus: true, :input_html => { rows: 15, style: 'font-size: 16px'}
+
+    = f.input :body, label: 'Enter  Your Text', required: false,  focus: true, :input_html => { rows: 22}
+    - if !@article.is_version? && @article.id.blank?
+      = f.input :slug, label: 'Slug', required: true, focus: true
+    -elsif @article.draft?
+      = f.input :slug, label: 'Slug', required: true, focus: true
+    -elsif @article.id.present?  &&  !@article.draft?
+      label
+        |Slug:
+      br/  
+      = @article.slug
+    -elsif @article.is_version?
+      label
+        |Slug:
+      br/  
+      = @article.slug
+
+    
+    - if @article.published_datetime.blank? 
+      .form-group
+        = f.label :published_datetime, label: 'When Should This Page Go Live?', id: 'page_published_label'
+        
+        .row.page-published.mt10
+          .col-md-6
+            .input-group
+
+              = f.date_field :published_datetime, :label => false, class: "form-control"  , id: 'published_datetime'
+           
+    - if @article.published_datetime.present? && @article.published_datetime <= Date.today  && @article.status != 'draft'
+      .form-group
+          = f.label :published_datetime, label: 'This Page Was Published On', id: 'page_published_label'
+          br/
+          = @article.publication_date.strftime("%B %e, %Y  ")
+
+    - if @article.published_datetime.present? && @article.published_datetime > Date.today or @article.published_datetime.present?  && @article.status == 'draft'
+      .form-group
+        .input-group
+        
+          = f.date_field :published_datetime, :label => 'Publication Date', class: "form-control" , id: 'page_publication_date'
+
+    hr/
+    .form-group 
+      .row 
+        .col-sm-7
+          .form-subgroup
+            label
+              | UPLOAD A HERO IMAGE
+            br/
+            small
+              |(at least 600px wide to work on large displays)
+            .fileupload-new
+              = f.file_field :hero_img, :class=>'fileupload-new ', as: :file
+        .col-sm-5
+          .form-subgroup
+            label
+              | UPLOAD AN OPTIONAL THUMBNAIL
+            small
+              |(at least 300px wide to work on large displays)
+            .fileupload-new
+              = f.file_field :thumbnail_img, :class=>'fileupload-new ', as: :file
+      hr/
+      .panel.panel-default.blog-form-accordion style="padding: 0"
+        .panel-heading 
+          strong
+            .accordionTitle
+              a data-parent="#accordion" data-toggle="collapse" href="#collapseMetaProperties" 
+                | META PROPERTIES
+        #collapseMetaProperties.panel-collapse.collapse
+          .panel-body style="padding: 10px"
+            .form-group
+              .field
+                = f.fields_for :meta_properties do |builder|
+                  = render 'meta_property_fields', f: builder
+              .field
+                = link_to_add_association f, :meta_properties
+                  i.fa.fa-plus 
+                  |ADD META PROPERTY
+        .panel-heading 
+          strong
+            .accordionTitle
+              a data-parent="#accordion" data-toggle="collapse" href="#collapseSocial" 
+                | SOCIAL SHARING
+        #collapseSocial.panel-collapse.collapse
+          .panel-body style="padding: 10px"
+            |THIS IS WHERE THE THINGIES GO
+                    
+
+
+  .panel-footer
+    .pull-right
+      = link_to 'CANCEL',  inside_blog_posts_path, :class => 'btn btn-default btn-md ml5'
+      = f.submit  value: 'SAVE & PREVIEW ', :class => 'btn btn-aqua ml5 '
+
+      = f.hidden_field :editor_user_id, value: current_user.id
+= hidden_field_tag "section_id_error", @article.errors[:blog_section_id].length
+
+javascript:
+  $(document).ready(function() {
+   
+    if ($('#section_id_error').val() != 1) {
+      $('.section-error').remove();
+    }
+
+    $('#page_section_id').on('change', function () {
+      $('.section-error').remove();
+    });
+  });

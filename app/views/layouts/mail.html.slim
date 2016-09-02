@@ -1,0 +1,75 @@
+
+doctype html
+html
+  head
+    meta charset="UTF-8"
+    meta name="robots" content="noindex, nofollow"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+
+body
+  table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;line-height:100%!important;margin:0;padding:0;width:100%!important;background-color:#f9f9f9" 
+    tbody
+      tr
+        td
+          table style="border-collapse:collapse;margin:auto;width:100%;max-width:635px;min-width:320px" 
+            tbody
+              tr
+                td valign="top" 
+                  table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;color:#c0c0c0;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;line-height:26px;margin:0 auto 26px;width:100%" 
+              tr
+                td style="padding:0 20px" valign="top" 
+                  table border="0" cellpadding="0" cellspacing="0" 
+                    tbody
+                      tr
+                        td style="padding: 5px 15px 20px 0"
+                          = link_to root_url(ref: @ref), target:"_blank"
+                            = image_tag "http://www.localhost:5000/images/branding/octopus-logo-md.png"
+                            / img.CToWUd src="<%= image_tag #{logo_img} %>"  
+                  table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-radius:3px;color:#545454;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;line-height:20px;margin:0 auto;width:100%" 
+                    tbody
+                      tr
+                        td valign="top" 
+                          table border="0" cellpadding="0" cellspacing="0" style="border-collapse:separate;border:none;font-size:1px;height:2px;line-height:3px;width:100%" 
+                          / http://stackoverflow.com/questions/5367164/remove-substring-from-the-string
+                            tbody
+                              tr
+                                td style="width:100%;background:#0071b2;border:none;font-family:'Helvetica Neue',Arial,sans-serif" valign="top"  &nbsp;
+                          table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-color:#dddddd;border-radius:0 0 3px 3px;border-style:solid;border-width:0 1px 1px;width:100%"
+                            = yield 
+                       
+                      tr
+                        td
+                          table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;color:#545454;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;line-height:20px;margin:0 auto;max-width:100%;width:100%" 
+                            tbody
+                              tr
+                                td
+                                  table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 0px 30px 30px 30px"
+                                    tbody
+                                      tr
+                                        td width="100%" 
+                                          table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse;color:#545454;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;line-height:20px;margin:0 auto;max-width:100%;width:100%" width="100%" 
+                                            tbody
+                                              tr
+                                                td align="center" style="color:#999999;text-align:center;font-size:11px" valign="top" 
+                                                  p style="line-height:14px" 
+                                                    | Copyright © 2016 Octopus, All rights reserved.
+                                                  p style="line-height:14px" 
+                                                    | Octopus
+                                                    br/
+                                                    | 645 W 9th St. 110 #157
+                                                    br/
+                                                    | Los Angeles, CA 90015
+                                                    br/
+                                              tr
+                                                td align="center" style="color:#999999;font-size:11px" valign="top" 
+                                                  - if @email_kind.is_invite?
+                                                    p style="line-height:14px" 
+                                                      | You are receiving this email because you have been invited to a...by "name"
+                                                      a href="D" style="color:#999999" target="_blank"  Unsubscribe
+                                                  - else
+                                                     p style="line-height:14px" 
+                                                      | You are receiving this email because you are or have participated in an Octopus Project.
+                                                      a href="D" style="color:#999999" target="_blank"  Unsubscribe
+                                              tr
+

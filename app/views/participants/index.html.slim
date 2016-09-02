@@ -1,0 +1,20 @@
+css:
+.container
+  .project-headline
+      = render "/shared/project_headline", project_id: @project.id
+
+      .breadcrumbs
+        ul.breadcrumb
+          li
+            = link_to projects_path
+              i.fa.fa-home
+          li
+            = link_to project_dashboard_index_path(project_id: @project.id)
+              |Dashboard
+          li.active
+            |Project Participants
+  h2.super
+    |Participants
+
+  -if @project.is_meal_delivery?
+    = render partial: "/participants/p/meal_delivery_participants"

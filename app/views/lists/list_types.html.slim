@@ -1,0 +1,20 @@
+- @title = "Choose a List Type" 
+
+.container
+  h3.heavy.text-center.pt20
+    |Choose what type of list you are making
+   
+  .panel-row.panel-row-500
+    .panel.panel-octopus 
+      h4
+        strong
+          |For project like a guest list, invite list, announcement list?
+      = link_to list_project_path, class: 'btn btn-aqua btn-block btn-lg'
+        |PROJECT LIST
+      hr/
+      h4
+        strong
+          |Different, like holiday cards or thank you list
+      = link_to new_list_path, class: 'btn btn-orange btn-block btn-lg'
+         |OTHER LIST
+ 

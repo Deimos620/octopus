@@ -1,0 +1,87 @@
+css:
+  .blog-meta {font-size: 14; text-transform: none; font-weight: normal; color: #777 !important}
+.container.pt50.pb50
+  .row.blog-panel-row
+    .col-sm-9.col-md-9.col-lg-8
+      .panel.panel-inside style="max-width: 700px"
+        small
+          = link_to inside_blog_posts_path
+            |BACK TO INDEX
+        .pull-right
+            = render partial: 'inside/shared/post_status', locals: {article: @article}
+            br/
+            small
+              em.color-md-gray
+                |LAST CHANGED BY:&nbsp;
+                = @article.editor.name
+        .panel-heading
+
+          .blog-title
+            = @article.title
+        
+        .panel-body.pt10
+          .blog-meta style="font-size: 14; text-transform: none; font-weight: normal; color: #777 !important"
+            .author
+              |by&nbsp;
+              = @article.author.name
+              small style= "font-size: 9px; font-style: italic"
+                |&nbsp;(
+                = @article.author.user.name
+                |)&nbsp;
+              |&nbsp;||&nbsp;
+              
+              - if @article.is_queued? 
+                |will be published on&nbsp;
+                = @article.published_datetime.strftime("%b. %e, %Y")
+              - elsif  @article.draft?
+                |may be published on&nbsp;
+                = @article.published_datetime.strftime("%b. %e, %Y")
+              - elsif @article.is_live?
+                |was published on&nbsp;
+                = @article.published_datetime.strftime("%b. %e, %Y")
+              - else
+                em
+                  |no publication date set
+          hr/
+
+          article
+            = @article.body.html_safe
+        / hr/
+      .row 
+        - if @article.is_version?     
+          - if not @article.is_retired_version?
+            .col-sm-6.col-md-3.col-lg-3
+              = link_to 'EDIT VERSION' , edit_inside_blog_post_path(id: @article.id), class: 'btn btn-warning btn-block mb15 btn-lg'
+          - if @article.pending && params[:id] 
+            .col-sm-6.col-md-2.col-lg-2
+              - if  current_user.can_edit?
+                = link_to 'PUBLISH ' , root_path(id: @article.id), class: 'btn btn-success btn-block mb15 btn-lg '
+          .col-sm-6.col-md-2.col-lg-2
+            - if current_user.can_edit?
+              = link_to 'DELETE ' , root_path(id: @article.id), class: 'btn btn-danger btn-block mb15 btn-lg', method: :delete
+        
+        - else
+            - if not @article.archived?
+              .col-sm-6.col-md-3.col-lg-3
+                = link_to 'EDIT  ' , edit_inside_blog_post_path(id: @article.id), class: 'btn btn-warning btn-block mb15 btn-lg'
+            - if @article.archived? && params[:id]
+              .col-sm-6.col-md-3.col-lg-3
+                = link_to 'REACTIVATE THIS VERSION' , root_path(id: @article.id), class: 'btn btn-success btn-block mb15 btn-lg '
+            - if @article.draft?
+              .col-sm-6.col-md-3.col-lg-3
+                -if  current_user.is_editor?
+                  = link_to 'PUBLISH ' , root_path(id: @article.id), class: 'btn btn-success btn-block mb15 btn-lg '
+               
+            - if @article.is_live?
+                .col-sm-6.col-md-3.col-lg-3
+                  = link_to 'ARCHIVE' , root_path(id: @article.id), class: 'btn btn-violet btn-block mb15 btn-lg'
+
+            .col-sm-6.col-md-3.col-lg-3
+              -if current_user.is_queen?
+                = link_to 'DELETE FOREVER' , root_path(id: @article.id), class: 'btn btn-danger btn-block mb15 btn-lg', method: :delete
+    .col-sm-3.col-md-3.col-lg-4
+      = render partial: 'inside/blog_posts/sidebar', locals: {article: @article}
+  .row.versions.pt20
+    |PUT OTHER VERSIONS HERE
+     
+    

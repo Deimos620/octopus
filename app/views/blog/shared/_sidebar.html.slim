@@ -1,0 +1,11 @@
+.widget-social 
+  ul#sidebar-social.social-row.list-inline 
+    - @ref = "sidebar"
+    = render partial: 'blog/shared/main_social',  ref: @ref
+.widget.about-us
+  |ABOUT US
+.widget.ad-widget
+  = image_tag "default-ads/default-300x250.jpg" 
+= render partial: "blog/shared/widgets/related_articles"
+= render partial: "blog/shared/widgets/ads/ads_300x50"
+= render partial: "blog/shared/widgets/mailing_list"

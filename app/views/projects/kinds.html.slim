@@ -1,0 +1,52 @@
+css:
+ #templateindex .panel-title {font-size: 32px}
+-title "Project Kinds" 
+.container
+
+  #templateindex.center-block
+    h1 align="center" 
+      strong.dk-aqua.super.text-uppercase Choose a Project Type
+    .row.panel-row-800.center-block
+      #accordion.panel-group
+        .panel.panel-default.panel-templates
+          .panel-heading
+            table
+              tr
+                td
+                  a data-parent="#accordion" data-toggle="collapse" href="#collapseOne" 
+                    = image_tag 'https://s3-us-west-2.amazonaws.com/makeparty/app/template/16-sm.png', alt: 'Parties', width: '45px', :class =>'icon'
+                td
+                  .panel-title.heavy
+                    a data-parent="#accordion" data-toggle="collapse" href="#collapseOne"  Parties
+          #collapseOne.panel-collapse.collapse
+            .panel-body
+              - if party_kinds.blank?
+                | Coming soon...
+              - else
+                ul.list-unstyled
+                  - party_kinds.each do |type|
+                    li
+                      = link_to role_project_path(project_type_code: type.new_project.code) 
+                        = type.new_project.subcategory_name
+          
+      .panel.panel-default.panel-templates
+        .panel-heading
+          table
+            tr
+              td
+                a data-parent="#accordion" data-toggle="collapse" href="#collapseOne" 
+                  = image_tag 'https://s3-us-west-2.amazonaws.com/makeparty/app/template/8-sm.png', alt: 'Parties', width: '40px'
+              td
+                .panel-title.heavy
+                  a data-parent="#accordion" data-toggle="collapse" href="#collapseTwo"  Meal Deliveries
+        #collapseTwo.panel-collapse.collapse
+          .panel-body
+            - if meal_delivery_kinds.blank?
+              | Coming soon...
+            - else
+               ul.list-unstyled
+                 - meal_delivery_kinds.each do |type|
+                  li 
+                    = link_to role_project_path(project_type_code: type.new_project.code) 
+                      = type.new_project.subcategory_name
+          

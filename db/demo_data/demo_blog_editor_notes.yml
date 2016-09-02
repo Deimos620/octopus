@@ -1,0 +1,13 @@
+
+- title: Some note
+  note: Some sort of  note Some  sort of  note Some  sort of  note Some viewed note Some  sort of  note Some  sort of  note Some viewed note
+  blog_post_id: 2
+  editor_user_id: 2
+  blog_editor_user_id: 2
+
+- title: Some viewed note
+  note: Some viewed note Some viewed note Some viewed note Some viewed note Some viewed note Some viewed note Some viewed note
+  blog_post_id: 4
+  editor_user_id: 2
+  blog_editor_user_id: 2
+  viewed: true

@@ -1,0 +1,23 @@
+css:
+  .blog-meta {font-size: 14; text-transform: none; font-weight: normal; color: #777 !important}
+  
+.container.pt50
+  .row.blog-panel-row
+    .col-sm-9.col-md-9.col-lg-8
+      .panel.panel-inside.panel-blog
+        small
+          = link_to inside_blog_posts_path
+            |BACK TO INDEX
+        .panel-heading
+          .blog-title
+            |NEW POST
+            
+        
+        .panel-body.pt10
+          = render partial: 'inside/blog_posts/form', locals: {article: @article}
+
+    .col-sm-3.col-md-3.col-lg-4
+
+      = render partial: 'inside/blog_posts/sidebar', locals: {article: @article}
+
+      

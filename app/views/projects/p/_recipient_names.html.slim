@@ -1,0 +1,10 @@
+- if @project.project_recipients.present? && @project.honored_guests.passive.blank?
+  = @project.project_recipients.map{ |r| link_to(r.name, project_participant_path(project_id: r.project_id, id: r.participant.id))}.join(" & ").html_safe
+- elsif @project.honored_guests.invited.present?
+  = @project.honored_guests.invited.map{ |r| link_to(r.completed_name,project_participant_path(project_id: r.project_id, id: r.participant.id))}.join(" & ").html_safe
+
+- if @project.project_recipients.present? && @project.honored_guests.present?
+  |  & 
+  = @project.honored_guests.map{ |r| r.invited_name }.join(" & ")
+- elsif @project.honored_guests.invited.blank? &&  @project.honored_guests.present?
+  = @project.honored_guests.map{ |r| r.completed_name }.join(" & ")

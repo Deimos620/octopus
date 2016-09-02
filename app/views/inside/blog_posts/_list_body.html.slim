@@ -1,0 +1,51 @@
+- if !article.is_version?
+  tr
+    td.small-text  
+      - if article.author.present?
+        = article.author.name
+    td.tableTitle
+      = link_to inside_blog_post_path(article)
+        = article.title.truncate(55)
+    td.large-text 
+      - if article.section.present?
+        = article.section.title
+    td.large-text
+      - if article.blog_categories.present?
+        = article.blog_categories.each.map{ |r| r.name }.join(",  ") 
+    td.small-text  
+      - if article.blog_editor.present?
+        = article.blog_editor.name
+    td.tableStatus
+      = render partial: 'inside/shared/post_status', locals: {article: article}
+    td.small-text  
+      = article.updated_at.strftime("%b. %e, %Y")
+    td.small-text  width= '120px'
+      -if article.published_datetime.present?
+        = article.published_datetime.strftime("%b. %e, %Y at %l:%m")
+- else
+  / tr
+  /   td.tableType style="font-size: 18px"
+  /     = link_to admin_page_path(page)
+  /       i class="fa #{page.link.set_icon}"
+  /   td.tableTitle
+  /     = link_to admin_page_path(page)
+  /       = page.title.truncate(55)
+  /   td.tableTopic 
+  /     - if page.section.present?
+  /       = page.section.name
+  /   td.tableTopic 
+  /     - if page.topic.present?
+  /       = page.topic.title
+  /   td.tableEditor 
+  /     - if page.editor.present?
+  /       = page.editor.name
+  /   td.tableStatus
+  /     = render partial: 'admin/shared/page_statuses', locals: {page: page}
+  /   td.tableDates.updated 
+  /     = page.updated_at.strftime("%b. %e, %Y")
+  /   td.tableDates.updated  width= '120px'
+  /     -if page.publication_date.present?
+  /       = page.publication_date.strftime("%b. %e, %Y")
+
+
+

@@ -1,0 +1,33 @@
+/ article
+/   h2
+/     = article.title
+/   .lead
+/     = article.body.truncate(200).html_safe
+/     = link_to blog_article_path(article)
+/       |more
+
+
+      
+.col-md-4.col-lg-4.col-xl-3.col-xs-6
+  article
+    = link_to blog_article_path(article)
+      - if article.thumbnail_img.present?
+        =image_tag article.thumbnail_img(:xs)
+      -elsif article.hero_img.present?
+        =image_tag article.hero_img(:xs)
+
+      -else
+        = image_tag 'blog/default-blog-thumbnail.jpg'
+    .hidden-xs.visible-sm.visible-md.visible-lg.visible-xl
+      .preview-tile-box 
+        .title.preview-tiles-title
+          = article.title
+        .preview-tiles-lead
+          = article.body.truncate(80).html_safe
+          = link_to blog_article_path(article)
+            |more
+    .visible-xs.hidden-sm.hidden-md.hidden-lg.hidden-xl
+      .preview-tile-box.short 
+        .title.preview-tiles-title
+          = article.title.truncate(40)
+      

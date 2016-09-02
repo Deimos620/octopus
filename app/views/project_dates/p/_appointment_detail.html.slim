@@ -1,0 +1,48 @@
+li class="#{e.status}" style= "padding-right: 10px, margin-top: 2px"
+  span class="label #{e.status_badge} ml20 mr10" style= "float: left; margin-top: 5px"
+    =e.status
+
+  - if not e.unfinished?
+    .appt-time style= "float: left; width: 70px; font-size: 11px"
+
+      - if e.time_start
+        = e.time_start.strftime("%l:%M %P")
+      - if e.time_end && location != "dashboard"
+        |  - 
+        br/
+        = e.time_end.strftime("%l:%M %P")
+      - elsif e.time_start.blank? && e.time_end.blank?
+        em.color-gray
+          |no time chosen
+    - if location == "show"
+      .appointment-desc
+        = link_to project_participant_path(project_id: @project.id, id: e.participant.id)
+          = e.participant.name
+        = e.description
+    - else
+        = link_to project_project_date_path(id: e.project_date_id, project_id: e.project_id), data: {no_turbolink: true} 
+          = e.participant.name
+        |&nbsp;
+        = e.description.truncate(30)
+    = render partial: '/project_dates/p/buttons', locals: {e: e, location: location}
+
+
+
+  - else
+    .appt-time style= "float: left; width: 70px; font-size: 11px"
+      - if e.time_start
+        = e.time_start.strftime("%l:%M %P") 
+        |  - 
+      - if e.time_end
+        = e.time_end.strftime("%l:%M %P")
+    - if location == "show"
+      .appointment-desc
+        = link_to project_participant_path(project_id: @project.id, id: e.participant.id)
+          = e.participant.name
+        |&nbsp;
+        = e.description
+    - else
+        = link_to project_project_date_path(id: e.project_date_id, project_id: e.project_id), data: {no_turbolink: true} 
+          = e.participant.name
+        = e.description.truncate(30)
+    = render partial: '/project_dates/p/buttons', locals: {e: e, location: location}

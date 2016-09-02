@@ -1,0 +1,97 @@
+#topwrapper.left-toggled  .stickyheader, #topwrapper .stickyheader {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  position:fixed;
+  z-index: 1000;
+  top: 0;
+  -webkit-box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  -moz-box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  border-bottom: 1px solid #eee;
+  height: 40px;
+  margin-left:0;
+  left:0;
+  margin-right:0;
+  background: $white;
+
+
+}
+
+.avatar { width: 25px; height: 25px; margin-top: -3px }
+
+.signed_out #topwrapper.left-toggled  .stickyheader, .signed_out  #topwrapper .stickyheader {
+
+/*  background: #cc0000;
+*/
+}
+
+
+
+.stickyheader { border-radius: 0; border: 0
+  }
+
+  // .stickyheader #left-sidebar-wrapper{
+  //   top: 50px;
+  // }
+  .stickyheader .sticky-leftpanel {
+    top: 0;
+  }
+  // .stickyheader .sticky-leftpanel .leftpanelinner {
+  //   margin-top: 55px;
+  // }
+
+
+  .stickyheader .mainpanel {
+    padding-top: 50px;
+  }
+
+  .stickyheader.leftpanel-hide .headerbar {
+    left: 0px;
+  }
+  .headerbar {
+    padding-left: 0px; text-align:right; width:100%; margin-left:0;
+  }
+
+  #left-toggle {
+
+  }
+
+.navbar-octopus {margin-bottom: 0; background: #fff; border-radius: 0; }
+.navbar-octopus .container-fluid {padding-left: 0px}
+.navbar-nav { border-radius: 0; }
+.navbar-nav > li > a {padding-top:10px !important; padding-bottom:5px !important;}
+.navbar {min-height:30px !important}
+.navbar-brand {padding-top:5px !important; padding-bottom:0px !important; height: 40px; }
+.navbar-brand img {max-width: 100px; height: 100%}
+.menutoggle {
+    width: 50px;
+    text-align: center;
+    height: 36px;
+    font-size: 22px;
+    cursor: pointer;
+    color: $md_aqua;
+    margin-left: 0px;
+    margin-top: -2px;
+    border-right: 1px solid #eee;
+    -moz-transition: all 0.2s ease-out 0s;
+    -webkit-transition: all 0.2s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
+    float: left;
+    margin-right: 10px;
+  }
+  .menutoggle:hover {
+    color: $xdk_gray;
+    background-color: $almost_white;
+  }
+  .menutoggle .fa, .menutoggle .glyphicon {
+    margin: 10px 8px 0 8px;
+  }
+
+
+   .dropdown-menu .custom-drop  {margin-top: 60px !important;}
+
+  // .navbar-octopus  .dropdown {font-family:  $font-stack;}
+@media(max-width:768px)  {
+  .navbar-octopus .container-fluid {padding-left: 15px}
+}

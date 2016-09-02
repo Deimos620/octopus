@@ -1,0 +1,52 @@
+css:
+  .large-text {font-size: 22px}
+.container
+  .project-headline
+    = render "/shared/project_headline", project_id: @project.id
+
+    .breadcrumbs
+      ul.breadcrumb
+        li
+          = link_to projects_path
+            i.fa.fa-home
+        li
+          = link_to project_dashboard_index_path(project_id: @project.id)
+            |Dashboard
+        li
+          = link_to project_participants_path(project_id: @project.id)
+            |Project Participants
+        li.active
+          = @participant.name
+  .row.panel-row-800.center-block
+    .panel.panel-octopus
+      .panel-heading
+        =@participant.name
+        div
+          small
+            - if @participant.participant_roles.present?
+              light
+                em
+                  = @participant.participant_roles.map{ |r| r.kind }.join(",  ")
+            / ul.label-row.list-unstyled
+            /   - @participant.participant_roles.each do |pr|
+            /     li
+            /       light
+            /         em
+            /           = pr.kind
+      - if current_user.can_edit(@project.id)
+        .panel-body
+          .form-group.large-text
+            strong
+              |INVITE SENT: 
+            = @participant.created_at.strftime("%B %e, %Y ")
+            / - from_time = (Time.now - @participant.created_at)
+            em.color-md-gray
+              |(
+              = time_ago_in_words(@participant.created_at)
+              |  ago)
+          / .form-group
+          /   - if @participant.can_be_reminded?
+          /     = link_to project_resend_invite_path(project_id: @participant.project_id, id: @participant.id), class: 'btn btn-aqua btn-lg btn-block'
+          /       i.fa.fa-airplane
+          /       |RESEND INVITE TO 
+          /       = @participant.email

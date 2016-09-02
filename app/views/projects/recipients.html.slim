@@ -1,0 +1,145 @@
+- @title = "Participants"
+css:
+ .invite-participants .well li, .invite-participants .well span{font-size: 12px}
+ .honored-guest-invites {display: inline-block}
+ .honored-guest-invites .participant_email { color: #333; font-weight: 600}
+
+- @default_helper_message = "Do some stuff"
+.container
+  = render "/shared/project_headline", project_id: @project.id
+
+  .breadcrumbs
+    ul.breadcrumb
+      li
+        = link_to projects_path
+          i.fa.fa-home
+      li
+        = link_to project_dashboard_index_path(project_id: @project.id)
+          |Dashboard
+      li
+        = link_to project_participants_path(project_id: @project.id)
+          |Project Participants
+      li.active
+      
+        |Add Recipients
+          
+  .row.invite-participants
+    / .col-xs-12.col-sm-4
+    /   .visible-xs.hidden-lg
+    /     .well
+    /       |YOU HAVE INVITED
+    /       hr/
+    /       span
+    /         = @project.participants.map(&:name_and_email).join(' & ')
+    /   .hidden-xs.visible-lg
+    /     .well
+    /       |YOU HAVE INVITED
+    /       hr/
+    /       - @project.participants.each do |p|
+    /         ul.list-unstyled
+    /           li
+    /             = p.name_and_email
+    .col-xs-12.col-sm-12
+      / - if  @participant_role.blank? or @participant_role.to_i == 4
+      /   .panel.panel-octopus
+      /     .panel-heading
+      /       i.fa.fa-plus
+      /       |Add Helpers
+      /     = simple_form_for @participant, url: project_invite_participants_path(project_id: @project.id, participant_role: @participant_role), multipart: true do |f|
+
+      /       .panel-body
+      /         .form-group
+      /           = f.input :email, required: true, placeholder: 'Emails',  label: 'Add as many emails as you like, separate by commas'
+      /         .form-group
+      /           .row
+      /             - current_user.friends.each do |friend|
+      /               .col-xs-6.col-sm-6.col-lg-4
+      /                 = friend.name
+
+      /         .form-group
+      /           = f.input :message, label: "Write an optional message", default: "#{@default_helper_message}"
+      /       .panel-footer
+      /         = f.button :submit, value: 'INVITE HELPERS ', :class => 'btn btn-aqua btn-lg btn-block '
+      / - elsif @participant_role.to_i == 3
+      .panel.panel-octopus style="max-width: 700px; margin-left: auto; margin-right: auto"
+        .panel-heading
+          i.fa.fa-plus
+          |Add Recipients
+        = simple_form_for @project, url: project_invite_recipients_path(id: @project.id, participant_role: @participant_role), multipart: true do |f|
+
+          .panel-body
+            - if @project.project_recipients.blank?  && @project.honored_guests.blank?
+              hr/            
+
+              .form-group
+                label Email Recipients Guests
+                br/
+                                
+                = f.simple_fields_for :honored_guests do |ff|
+                  .form-group
+
+                    .controls.form-inline.honored-guest-invites.mb10
+                      = ff.text_field :name,  class: 'form-control'
+                      = ff.text_field :email, required: true,  placeholder: "Recipient Email ",  class: 'form-control mr10 ml10'
+                        / = f.input :passive,  label: "skip emailing this honored guest", as: :boolean
+
+              
+            - if @project.project_recipients.present?
+              .form-group
+                = @project.project_recipients.map{ |r| link_to(r.name,project_participant_path(project_id: r.project_id, id: r.id))}.join(" & ").html_safe
+                hr/
+            - if @project.honored_guests.invited.present?
+              label
+                |INVITED RECIPIENTS:
+              ul.list-unstyled
+                - @project.honored_guests.invited.each do |honored_guest|
+           
+                  li
+                    strong
+                      = honored_guest.invited_name
+                    small
+                      |  was invited on  
+                      = honored_guest.participant.created_at.strftime("%D")
+            - if @project.honored_guests.completed.present?
+              label
+                |OTHER RECIPIENTS:
+              ul.list-unstyled
+                - @project.honored_guests.completed.each do |honored_guest|
+                  li
+                    |You skipped emailing  
+                    strong
+                      = honored_guest.invited_name
+                    small
+                      |   on  
+                      = honored_guest.updated_at.strftime("%D")
+                  
+           
+
+            - if @project.honored_guests.invitable.present?  
+              hr/
+              .form-group
+                label Email Recipients
+                br/
+                
+                / - @project.honored_guests.each do |honored_guest|
+                
+                = f.simple_fields_for :honored_guests do |ff|
+                  = render partial: '/participants/p/invite_honored_guest_field', locals: {f: ff}
+
+                    / .controls.form-inline.honored-guest-invites
+                    /   =f.input :email, required: false,  placeholder: "Email for #{honored_guest.name}",  label: "#{honored_guest.name}"
+
+                      / = ff.input :passive,  label: "skip emailing this honored guest", as: :boolean
+              .form-group
+                label
+                  |Write an optional message
+                br/
+              
+                = text_area_tag :message, "", default: "#{@default_helper_message}", html: {class: 'form-control'}
+           
+                hr/
+          
+            
+            .panel-footer
+              = f.button :submit, value: 'INVITE RECIPIENTS ', :class => 'btn btn-aqua btn-lg btn-block '
+

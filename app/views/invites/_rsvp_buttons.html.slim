@@ -1,0 +1,46 @@
+
+ .row
+    - if @participant.accepted?
+      = link_to project_dashboard_index_path(project_id: @participant.project_id), class: 'btn-lg btn btn-success btn-block'
+        | GO TO PROJECT
+      hr/
+
+
+    - if @participant.pending? or @participant.unseen?
+      .col-sm-4
+        = link_to rsvp_path(id: @participant.id, project_id: @participant.project_id, rsvp: "accepted"), class: 'btn-lg btn btn-aqua btn-block'
+          |ACCEPT
+      .col-sm-4
+        = link_to rsvp_path(id: @participant.id,  project_id: @participant.project_id, rsvp: "maybe"), class: 'btn-lg btn btn-orange  btn-block'
+          |MAYBE
+      .col-sm-4
+        = link_to rsvp_path(id: @participant.id,  project_id: @participant.project_id, rsvp: "declined"), class: 'btn-lg btn btn-violet  btn-block'
+          |DECLINE
+    - else
+      - if @participant.accepted?
+        .col-sm-4
+          = link_to rsvp_path(id: @participant.id,  project_id: @participant.project_id, rsvp: "accepted"), class: 'btn btn btn-aqua btn-block'
+            |ACCEPTED
+      -else
+        .col-sm-4
+          = link_to rsvp_path(id: @participant.id,  project_id: @participant.project_id, rsvp: "accepted"), class: 'btn btn btn-clear btn-block'
+            |ACCEPT
+      - if @participant.maybe?
+        .col-sm-4
+          = link_to rsvp_path(id: @participant.id, project_id: @participant.project_id, rsvp: "maybe"), class: 'btn btn btn-orange  btn-block'
+            |MAYBE
+      -else
+        .col-sm-4
+          = link_to rsvp_path(id: @participant.id, project_id: @participant.project_id, rsvp: "maybe"), class: 'btn btn btn-clear  btn-block'
+            |MAYBE
+      - if @participant.declined?
+     
+        .col-sm-4
+          = link_to rsvp_path(id: @participant.id, project_id: @participant.project_id, rsvp: "declined"), class: 'btn btn btn-violet  btn-block'
+            |DECLINED
+      - else
+        .col-sm-4
+          = link_to rsvp_path(id: @participant.id, project_id: @participant.project_id, rsvp: "declined"), class: 'btn btn btn-clear  btn-block'
+            |DECLINE
+
+

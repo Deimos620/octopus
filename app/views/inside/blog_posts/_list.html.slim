@@ -1,0 +1,29 @@
+css:
+  .table-inside {width:100%}
+  .table-inside tr {}
+  .table-inside th {padding: 5px; font-weight: bold}
+  .table-inside td {padding: 5px; border: 1px solid #ccc}
+  .table-inside td.small-text {font-size: 12px; color: #888; font-style: italic}
+  .table-inside td.large-text {font-size: 16px; color: #333}
+
+table.table-inside.table-striped border='0'
+  thead
+    th width= '130px'
+      |AUTHOR
+    th
+      |TITLE
+    th width= '100px'
+      | SECTION
+    th width= '110px'
+      | FEATURE
+    th width= '130px'
+      |UPDATED BY
+    th width= '90px'
+      |STATUS
+    th width= '90px'
+      | UPDATED
+    th width= '90px' 
+      | PUBLISHED 
+  tbody
+    - @articles.each do |article|
+      = render partial: 'list_body', locals: {article: article}

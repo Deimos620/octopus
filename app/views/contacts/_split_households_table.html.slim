@@ -1,0 +1,41 @@
+css:
+  .address-missing-label li {padding: 2px 8px; border-radius: 2px; color: #fff; background: #cc0000; margin: 3px; text-transform: uppercase}
+  .missing-address {color: #ccc}
+= form_tag split_households_path(list_id: params[:list_id]), method: :patch  
+
+  div style="max-width: 500px; margin-left: auto; margin-right: auto;"
+    h1
+      = @households.pending_split.count
+      |  PENDING CONTACTS SPLIT
+    table.octopus-table
+      thead
+        th width= ''
+          |Name
+        th width= '100px'
+         
+     
+         
+     
+      tbody
+        = hidden_field_tag "[household_ids][]", nil 
+        - @households.pending_split.each do |household|
+          tr
+            td
+              - if  household.contact_households.count >> 1
+                | Is     
+                / = household.contacts.pending_discard.count
+                = household.contacts.pending_discard.each.map{ |r| r.name }.join(" & ") 
+                |  two people?
+              - else
+                - first_contact = household.contact.first.name
+            td
+              .custom-checkboxes
+                = check_box_tag "household_ids[]", household.id, id: dom_id(household)
+                = label_tag "YES"
+
+      
+    div
+      = submit_tag "UPDATE ALL", class: 'btn btn-block btn-aqua'
+
+
+  / Event.update_all(["available", true], :id => params[:event_ids])

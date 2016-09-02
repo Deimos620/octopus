@@ -1,0 +1,36 @@
+
+
+- @source = "new project"
+- @title = "Create a Mailing List" 
+.container.pt50
+  .panel-row
+    .panel.panel-octopus
+      .panel-heading
+        .panel-title
+          |IMPORT RESULTS FOR
+          br/
+          light 
+            - if @list.custom_name.present?
+              .smallandthick
+                em
+                  = @list.name
+              .fa.fa-envelope-o
+              = @list.custom_name
+            -else
+              .fa.fa-envelope-o
+              = @list.name
+      .panel-body
+        - @households = current_user.imported_households #refactor
+        - if @households.pending_split.present?
+          = render partial: "/contacts/split_households_table"
+
+        - elsif @households.pending_join.present?
+
+          |CHECK TO SEE IF CONTACTS SHARE A HOUSEHOLD
+          = render partial: "/contacts/join_households_table"
+        - if current_user.imported_contacts.present?
+          = render partial: "/contacts/contacts_table"
+
+        
+
+

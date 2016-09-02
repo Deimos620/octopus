@@ -1,0 +1,41 @@
+
+#appointmentEditForm.well.hide
+  = simple_form_for @chosen_event, url: event_path(project_id: @project.id, project_date_id: @project_date.id), multipart: true do |f|
+    = f.hidden_field :editor_user_id, value: current_user.id
+    = f.hidden_field :project_id, value: @project.id
+    = f.hidden_field :project_date_id, value: @project_date.id
+    = f.hidden_field :participant_id, value: current_user.current_project_participation(@project.id).id
+
+    strong
+    / - if 
+    / .form-group
+    /   =collection_select(:event, :project_date_id, @project_dates, :id, :schedule_date, :prompt => false, :selected => @chosen_date.id)
+    - if @project.restrictions.present?
+      .form-group
+        
+        #mainTimeMenu
+          .row
+            .col-md-4.col-sm-6.col-xs-6
+              = f.label :time_start, label: 'Time Start', id: 'timepickerStart'
+              .input-group.date
+                span.input-group-addon
+                  i.fa.fa-clock-o
+                =  f.text_field  :time_start, required: true,  class: 'form-control time-start'
+           
+            .col-md-4.col-sm-4.col-xs-6.pr0
+              = f.label :time_end, label: 'Time End'
+              .input-group.date
+                span.input-group-addon
+                  i.fa.fa-clock-o
+                =  f.text_field  :time_end, required: true, class: 'form-control time-end', id: 'timepickerEnd'
+      .form-group
+        .well
+          strong.uppcase
+            |Diet & Food REstrictions
+          br/
+          = @project.restrictions.each.map{ |r| r.name }.join(",  ")
+      .form-group
+        = f.input :description, label: "What kind of food are you bringing?", rows: 6, placeholder: 'I\'m bringing my grandmother\'s famous lasagna and a salad.  Please let me know if you need me to run any errrands or if you\'d rather something different.' 
+    = f.submit "SAVE ", class: 'btn btn-md btn-block btn-aqua'
+    / = link)t
+    / = f.submit "cancel ", class: 'btn btn-md btn-block btn-aqua'

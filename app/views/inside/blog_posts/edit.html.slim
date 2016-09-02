@@ -1,0 +1,30 @@
+css:
+  .blog-meta {font-size: 14; text-transform: none; font-weight: normal; color: #777 !important}
+  
+.container.pt50
+  .row.blog-panel-row
+    .col-sm-.col-md-9.col-lg-8
+      .panel.panel-inside.panel-blog
+        small
+          = link_to inside_blog_posts_path
+            |BACK TO INDEX
+        .pull-right
+            = render partial: 'inside/shared/post_status', locals: {article: @article}
+            br/
+            small
+              em.color-md-gray
+                |LAST CHANGED BY:&nbsp;
+                = @article.editor.name
+        .panel-heading
+          .blog-title
+            |EDIT:&nbsp;
+            span style="font-weight: normal, font-style: italic"
+              em
+                = @article.title
+        
+        .panel-body.pt10
+          = render partial: 'inside/blog_posts/form', locals: {article: @article}
+
+    .col-sm-3.col-md-3.col-lg-4
+
+      = render partial: 'inside/blog_posts/sidebar', locals: {article: @article}

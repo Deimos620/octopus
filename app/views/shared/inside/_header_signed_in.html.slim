@@ -1,0 +1,112 @@
+.stickyheader#signed_in 
+  nav.navbar.navbar-default.navbar-octopus.octopus-inside
+    .container-fluid
+      .navbar-header
+        / button.navbar-toggle aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+        /   span.sr-only Toggle navigation
+        /   span.icon-bar
+        /   span.icon-bar
+        /   span.icon-bar
+     
+        a#left-toggle.menutoggle.pull-left
+          i.fa.fa-bars
+        / button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+        /   span.sr-only Toggle navigation
+        /   span.icon-bar
+        /   span.icon-bar
+        /   span.icon-bar
+        .navbar-brand width= "80px"
+          = link_to root_path,  style: "padding-bottom: 5px"
+            = image_tag 'branding/octopus-logo-sm.png', alt: 'Octopus',   height: "50%", width: '50%'
+        / a.navbar-brand href="#"  Brand
+      /! Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      
+        ul.nav.navbar-nav.navbar-right
+          li
+            - if current_user.has_inside_privileges?
+              = link_to projects_path, style: "color: #cc0000"
+                |BACK TO SITE
+          / li
+          /   = link_to blog_articles_path
+          /     |BLOG
+          li.dropdown
+            a#drop1.dropdown-toggle-octo href="#" role="button" data-toggle="dropdown"
+              i.fa.fa-plus
+                strong
+                  | MANAGE BLOG
+                b.caret
+            ul.dropdown-menu.custom-drop.active role="menu" aria-labelledby="drop1" style=""
+              / - @sidebar_all_kinds.each do |k|
+              /   li
+              /     = link_to role_project_path(kind_id: k.id)
+              /       = k.title
+              li
+                = link_to new_inside_blog_post_path
+                  |NEW BLOG POST
+              li.divider
+              li
+                = link_to inside_blog_posts_path
+                  i.fa.fa-start
+                  |BLOG INDEX
+          li.dropdown
+            a#drop1.dropdown-toggle-octo href="#" role="button" data-toggle="dropdown"
+              i.fa.fa-plus
+                strong
+                  | SOCIAL
+                b.caret
+            ul.dropdown-menu.custom-drop.active role="menu" aria-labelledby="drop1" style=""
+
+              li
+                = link_to new_inside_social_share_path
+                  |NEW SOCIAL SHARE
+              li.divider
+              li
+                = link_to inside_social_shares_path
+                  i.fa.fa-start
+                  | SOCIAL SHARES
+
+          li.dropdown
+            = link_to root_path
+              |Our Picks
+          li.dropdown
+            = link_to root_path
+              |FAQ
+          li.dropdown
+            a#drop1.dropdown-toggle-octo href="#" role="button" data-toggle="dropdown"
+              i.fa.fa-globe.fa-2x style="margin-top: -5px"
+              - if current_user.global_notifications.present?
+                sup
+                  .badge.badge-success
+                    =current_user.global_notifications.count
+              b.caret
+            ul.dropdown-menu.custom-drop.active role="menu" aria-labelledby="drop1" style=""
+            
+              li
+                a href="#"
+                  |Notifications
+              li 
+                a href="#"
+                  |Messages
+        
+             
+          li.dropdown
+              a#drop1.dropdown-toggle-octo href="#" role="button" data-toggle="dropdown"
+                strong
+                  = image_tag current_user.set_avatar, class: "avatar mr10"
+                  = current_user.first_name
+                 
+                  b.caret
+              ul.dropdown-menu.custom-drop.active role="menu" aria-labelledby="drop4" style=""
+
+                li
+                  a href="#"
+                    |Profile
+                li 
+                  a href="#"
+                    |Settings
+                li.divider
+                li
+                  = link_to destroy_user_session_path, method: 'delete'
+                    i.fa.fa-lock
+                    |Sign Out

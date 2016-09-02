@@ -1,0 +1,14 @@
+
+
+ul.list-unstyled.appointments
+
+  - @project_date.events.order(time_start: :asc).each do |e|
+    - @link = project_participant_path(project_id: @project.id, id: e.participant.id)
+
+    - if @chosen_event.present? && e.id != @chosen_event.id 
+      = render partial: "project_dates/p/appointment_detail",  locals: {e: e, location: 'show', appointment_link: @appointment_link}
+    - elsif @chosen_event.present? && e.id == @chosen_event.id 
+      = render partial: "project_dates/p/appointment_detail",  locals: {e: e, location: 'show', appointment_link: @appointment_link}
+    - elsif @chosen_event.blank?
+
+      = render partial: "project_dates/p/appointment_detail",  locals: {e: e, location: 'show', appointment_link: @appointment_link}

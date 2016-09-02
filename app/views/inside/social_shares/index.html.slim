@@ -1,0 +1,51 @@
+css:
+  .social-shares {width: 100%}
+  .social-shares th {padding: 5px; border: solid 1px #eee; font-size: 16px; font-weight: bold}
+  .social-shares td {padding: 5px; border: solid 1px #eee}
+  .social-shares td {font-size: 14px}
+  .social-shares  .txt-sm {font-size: 12px}
+  .social-shares .icon {text-align: center; font-size: 22px}
+
+.container.pt50
+  .panel-row
+    .panel.panel-octopus
+      .panel-heading
+        .panel-title
+          |SOCIAL SHARES
+      .panel-body
+        table.social-shares
+          thead
+            th width="40px"
+
+            th width="90px"
+              |STATUS
+            th
+              |SHARE
+            th width="120px"
+              |ACCOUNT
+            th width="140px"
+              |PERMALINK
+            th width="100px"
+              |DATETIME
+            th width="40px"
+          tbody
+            - @social_shares.each do |social_share|
+              tr
+                td class= "icon #{social_share.social_account.platform}-color "
+                  i class= "fa #{social_share.icon}"
+                td.txt-sm
+                  span class="label label-#{social_share.status_label}"
+                    = social_share.status
+                td
+                  = social_share.display_copy
+                td
+                  = link_to root_path, target: "_blank"
+                    = social_share.social_account.adjusted_username
+                td.txt-sm
+                  = social_share.url
+                td.txt-sm
+                  = social_share.scheduled_datetime
+                td 
+                  = link_to root_path, class: 'btn btn-orange-alt btn-xs'
+                    i.fa.fa-pencil
+                    |  EDIT

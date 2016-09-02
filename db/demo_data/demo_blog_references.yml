@@ -1,0 +1,15 @@
+
+- reference_title: A Reference
+  blog_post_id: 1
+  editor_user_id: 2
+  reference_link: http://www.google.com
+  reference_author: Ada Lovelace
+  reference_publication: Some Publication
+
+
+- reference_title: A Second Reference
+  blog_post_id: 1
+  editor_user_id: 2
+  reference_link: http://www.google.com
+  reference_author: Tenzig Norgay
+  reference_publication: An Alternate Publication

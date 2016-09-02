@@ -1,0 +1,96 @@
+-   type: AdminEmailKind
+    project_type: 
+    role_type: 
+    category: error
+    label: email-not-set
+    subject: "This Email Is not Yet Set"
+    max_sends: 
+
+-   type: UserEmailKind
+    project_type: Project
+    role_type: 
+    category: project
+    label: project-created
+    subject: 'You''ve Created A Project'
+    max_sends: 1
+
+-   type: UserEmailKind
+    project_type: Meal Delivery
+    role_type: RecipientParticipantRole
+    category: invites
+    label: first-invite
+    subject: "You are getting meal deliveries!"
+    max_sends: 1
+
+-   type: UserEmailKind
+    project_type: Meal Delivery
+    role_type: RecipientParticipantRole
+    category: invites
+    label: reminder-invite
+    subject: "REMINDER: You are getting meal deliveries!"
+    max_sends: 1
+
+-   type: UserEmailKind
+    project_type: Meal Delivery
+    role_type: HelperParticipantRole
+    category: invites
+    label: first-invite
+    subject: "You''ve been invited to help bring meals!"
+    max_sends: 1
+
+-   type: UserEmailKind
+    project_type: Meal Delivery
+    role_type: HelperParticipantRole
+    category: invites
+    label: reminder-invite
+    subject: "REMINDER: You've been invited to help bring meals!"
+    max_sends: 2
+
+-   type: UserEmailKind
+    project_type: Meal Delivery
+    role_type: HelperParticipantRole
+    category: events
+    label: event-created
+    subject: "You created a Meal Delivery Appointment!"
+    max_sends: 1
+
+
+-   type: UserEmailKind
+    project_type: Project
+    role_type: RecipientParticipantRole
+    category: roundups
+    label: tomorrow-roundup
+    subject: visitng tomorrow
+    max_sends: 1
+
+
+
+
+
+-   type: AdminEmailKind
+    category: social-shares
+    label: scheduled-tommorrow
+    subject: Social Shares Upcoming Tomorrow
+    max_sends: 1
+
+-   type: AdminEmailKind
+    category: social-shares
+    label: scheduled-today
+    subject: Social Shares Upcoming today
+    max_sends: 
+
+-   type: AdminEmailKind
+    category: social-shares
+    label: scheduled-today
+    subject: Social Shares Upcoming this-week
+    max_sends: 1
+
+-   type: AdminEmailKind
+    category: roundups
+    label: daily-roundup
+    subject: Your Daily Roundup
+    max_sends: 1
+
+
+
+

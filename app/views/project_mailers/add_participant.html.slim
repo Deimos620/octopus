@@ -1,0 +1,48 @@
+table style="background: #fff; width: 600px; padding: 20px; margin-left: auto; margin-right:auto"
+  tr
+    td  style="width: 100%; text-align:center;"
+      h2 style=" margin-bottom: 10px"
+        - if @participant_role.participant.user.present?
+          |Hi&nbsp;
+          = @participant_role.participant.user.first_name
+          |,
+          br/
+        strong
+          =@participant_role.grantor.name
+        - if @participant_role.is_helper?
+          |&nbsp;has invited you to participate in
+        - elsif @participant_role.can_organize?
+          |&nbsp;has invited you to help organize 
+
+        - elsif @participant_role.is_recipient?
+          |&nbsp;is organizing&nbsp; 
+          =@project.kind.pluralize
+          |&nbsp; for you.
+      div style= "color: #cc0000; font-size: 30px; line-height: 42px"
+        strong
+          = @project.full_title
+      p
+      - if @participant_role.participant.message.present?
+        blockquote style="background: #eee; padding: 15px 20px; font-weight: normal; font-style: italic; font-size: 16px"
+          p
+            |"
+            = @participant_role.participant.message
+            |"
+          div style="text-align:right;"
+            |-
+            = @participant_role.grantor.name
+        div style="padding: 10px; margin-bottom: 10px; margin-top: 10px; border-top: 1px solid #eee"
+          h3
+            strong
+              |PROJECT INFO:
+          = render partial: "project_mailers/email_project_box"
+      div style="text-align: center; font-size: 22px"
+        - if  !@participant_role.is_recipient?
+          = link_to  project_invite_url(project_id: @participant_role.participant.project_id, id: @participant_role.participant.id, participant_role_id: @participant_role.id, ref: @ref), style: "text-transform:uppercase, font-weight: bold;  color:#fff;  display: inline-block; padding: 6px 12px; margin-bottom: 0; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle;  background-image: none; border: 1px solid transparent;border-radius: 4px; background-color: #7F1418; border-color: #933F32;     text-decoration: none; ", target:"_blank"
+            |CLICK HERE TO RSVP
+        - else
+          = link_to  project_invite_url(project_id: @participant_role.participant.project_id, id: @participant_role.participant.id, participant_role_id: @participant_role.id, ref: @ref), style: "text-transform:uppercase, font-weight: bold;  color:#fff;  display: inline-block; padding: 6px 12px; margin-bottom: 0; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle;  background-image: none; border: 1px solid transparent;border-radius: 4px; background-color: #7F1418; border-color: #933F32;     text-decoration: none; ", target:"_blank"
+            |CLICK HERE ACCEPT
+
+
+

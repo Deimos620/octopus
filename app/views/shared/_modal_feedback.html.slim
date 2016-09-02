@@ -1,0 +1,62 @@
+#feedbackmodal.modal.fade.bs-feedback-modal-panel aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog
+    #thanks_panel.hide.panel.panel-mp.md-aqua style=("font-size: 24px; font-weight:800; letter-spacing:1px; text-align:center; padding:20px") 
+      | thanks for your feedback
+      br/
+      br/
+      button.btn.btn-default.btn-xs data-dismiss="modal" data-target="#feedback_modal"  close
+    .panel.panel-mp id=("feedback_panel ") 
+      .panel-heading.dk-aqua id="" 
+        i.fa.fa-clipboard
+        | Feedback
+        br/
+        .subhead
+          | Please tell us what you think, any kind of feedback is highly appreciated.  No need to tell us what page...just your problem, idea, question or praise.
+      / .panel-body id=("feedback_panel2 ") 
+      /   = form_for @feedback, :remote => true, :id=>"feedback_form" do |f| 
+      /     - user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"]) 
+      /   /! HIDDEN FIELDS
+      /     = f.hidden_field  :page, value: request.original_url 
+
+      /     =f.hidden_field  :user_id, value: current_user.id 
+      /     - if @project.present? 
+      /    = f.hidden_field  :project_id, value:  @project.id 
+        
+      /   /! -adding role
+      /   | <%= f.hidden_field  :platform, :value => user_agent.platform %
+      /   | <%= f.hidden_field  :version, :value => user_agent.version %
+        
+      /   | <%= f.hidden_field :browser, :value => user_agent.browser %
+      /   | <%= f.hidden_field :os, :value => user_agent.os %
+      /   /! end adding role
+      /   /! END HIDDEN FIELDS
+      /   #sqBtnGroup.form-group.form-inline style="text-align:justify" 
+      /     | <%= f.label :category, 'Idea', :value => 'idea', :class=>' btn square-radio ', :style=>'margin-right:10px' do %
+      /     | <%= f.radio_button :category, 'idea', :checked => true,  :style=>''  %
+      /     i.fa.fa-lightbulb-o.fa-lg
+      /     | Idea
+      /     | <% end %
+      /     | <%= f.label :category, 'Problem', :value => 'problem', :class=>'btn square-radio', :style=>'margin-right:10px' do%
+      /     | <%= f.radio_button :category, 'problem', :style=>'' %
+      /     i.fa.fa-exclamation-triangle.fa-lg
+      /     | Problem
+      /     | <% end %
+      /     | <%= f.label :category, 'Question', :value => 'question', :class=>'btn square-radio',:style=>'margin-right:10px' do%
+          
+      /     | <%= f.radio_button :category, 'question', :style=>'' %
+      /     i.fa.fa-question.fa-lg
+      /     | Question
+      /     | <% end %
+      /     | <%= f.label :category, 'Praise', :class=>'btn square-radio',:value => 'praise'  do %
+      /     | <%= f.radio_button :category, 'praise' %
+      /     i.fa.fa-heart.fa-md
+      /     | Praise
+      /     | <% end %
+      /   div
+      /     | <%=    f.text_area  :feedback,   :class => 'form-control',  :style=>'margin-top: -15px', :rows => 6, :autofocus => true,  :placeholder => 'I can\'t find the send button ... how do I invite someone...I like this function...why don\'t you have a (insert  idea) ' %
+      / /! panel-body
+      / .panel-footer
+      /   | <%=f.submit  :class=>"btn btn-aqua btn-lg btn-block", :id=>"submit_feedback", :category=>"submit", :value=>"Submit Feedback" %
+        
+      /   | <% end %
+      / /! panel-footer

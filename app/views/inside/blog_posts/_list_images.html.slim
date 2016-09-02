@@ -1,0 +1,44 @@
+css:
+  .article-list-with-images li {border-top: solid 2px #333; border-bottom: solid 2px #333; padding: 20px 50px}
+  .article-list-with-images img {width: 100px; margin-right: 10px}
+  .article-list-with-images li .section-badge {max-width: 150px; text-transform: uppercase; font-size: 12px; 
+  background: #fff; border: 2px #999 solid; color: #999; text-align: center}
+  .article-list-with-images li .meta {text-transform: uppercase; font-size: 11px; letter-spacing: 1.7px; color: #999}
+
+  .article-list-with-images li .title,   .article-list-with-images li .title a {font-size: 24px; font-weight: 700; color: #333}
+ul.list-unstyled.article-list-with-images
+  - @articles.each do |article|
+    li class= "article-#{article.status}"
+      .row
+        .section-badge
+          - if article.section.present?
+            = article.section.title
+        = link_to  inside_blog_post_path(article), class: 'btn btn-default btn-xs pull-right'
+          |VIEW
+        = render partial: 'inside/shared/post_status', locals: {article: article}
+
+
+        .col-md-2.col-sm-12.col-lg-2
+          = image_tag article.image
+        .col-md-8.col-sm-12
+          .meta
+            - if article.author.present?
+              = article.author.name
+            |   |   
+            -if article.published_datetime.present?
+              = article.published_datetime.strftime("%b. %e, %Y at %l:%m ")
+          .title
+            = link_to inside_blog_post_path(article)
+              = article.title.truncate(55)
+          small
+            = article.body.truncate(155).html_safe
+          hr/
+          - if article.blog_categories.present?
+            = article.blog_categories.each.map{ |r| r.name }.join(",  ")
+          br/
+          - if article.waiting?
+            |WATING ON:
+            = article.waiting_on
+      
+
+ 

@@ -1,0 +1,5 @@
+- if @project.participants.declined.present?
+  = render partial: '/participants/p/participants_table', locals: {p: p, f: "declined"}
+- else
+  h1
+    | No one has declined.

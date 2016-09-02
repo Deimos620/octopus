@@ -1,0 +1,22 @@
+.address-title
+  = @project.default_address.title
+= link_to @project.default_address.google_maps_link, target: "_blank"
+  i.fa.fa-map-marker 
+  |&nbsp;
+  = @project.default_address.full_address
+
+    / ul.list-unstyled
+    /   li
+    /     i.fa.fa-map-marker
+    /     |&nbsp;
+    /     = @project.default_address.address_1
+    /   li
+    /     = @project.default_address.address_2
+    /   li
+    /     = @project.default_address.city
+    /     |,&nbsp;
+    /     = @project.default_address.us_state.code
+    /     |&nbsp;
+    /     = @project.default_address.postal_code
+
+    

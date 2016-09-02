@@ -1,0 +1,10 @@
+table style="background: #fff; width: 600px; padding: 20px; margin-left: auto; margin-right:auto"
+  tr
+    td width="100%"
+      |Your appointment request for 
+      =@event.start_date_and_time
+      - if @response == "reschedule"
+      | has been 
+        | DENIED.  Please choose another date/time.
+      - if @response == "approved"
+        | APPROVED!

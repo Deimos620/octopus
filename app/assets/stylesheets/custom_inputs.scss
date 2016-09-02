@@ -1,0 +1,114 @@
+/*** custom checkboxes ***/
+
+input[type="checkbox"] { display:none; } /* to hide the checkbox itself */
+ .custom-checkboxes input[type="checkbox"] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 20px;
+      vertical-align: middle;
+      font-weight: bold;
+
+}
+
+
+ .custom-checkboxes input[type="checkbox"] .checkbox-label label{
+     color: $md_gray; font-weight:normal;
+}
+
+ .custom-checkboxes input[type="checkbox"]:checked .checkbox-label  {
+     color: $dk_orange; font-weight:normal;
+}
+
+// .custom-checkboxes label  {color: $md_gray}
+
+// .panel-octopus .simple_form  .custom-checkboxes input[type="checkbox"]  label{color: $md_gray; font-weight: normal}
+.panel-octopus .simple_form  .custom-checkboxes  label,  .custom-checkboxes  label{color: $dk_gray}
+
+
+input[type="checkbox"] + label:before { content: "\f096"; } /* unchecked icon */
+input[type="checkbox"] + label:before { letter-spacing: 10px;  color:$lt_gray;} /* space between checkbox and label */
+
+.custom-checkboxes input[type="checkbox"]:checked + label:before { content: "\f046"; } /* checked icon */
+.custom-checkboxes input[type="checkbox"]:checked + label:before { letter-spacing: 5px;  color: $dk_orange; } /* allow space for check mark */
+input[type=checkbox] + label:before { letter-spacing: 5px;  color: $lt_gray; } /* allow space for check mark */
+
+// .orange-checkboxes input[type=checkbox]:checked + label:before { letter-spacing: 5px;  color: $md_orange; } /* allow space for check mark */
+// .grey-checkboxes input[type=checkbox]:checked + label:before { letter-spacing: 5px;  color:#666; } /* allow space for check mark */
+// .checkboxes input[type="checkbox"]:checked + label:before { letter-spacing: 5px;  color: $md_aqua; } /* allow space for check mark */
+// .aqua-checkboxes input[type="checkbox"] + label:before { letter-spacing: 5px;  color: $lt_gray; font-weight: normal} /* allow space for check mark */
+
+
+// input[type=checkbox][disabled]:checked + label:before { letter-spacing: 5px;  color: $lt_gray; } /* allow space for check mark */
+// input[type=checkbox] + label:before { letter-spacing: 5px;  color: $lt_gray; } /* allow space for check mark */
+
+
+ // .checkboxes  label {letter-spacing: 1px; font-weight:normal;  color: $lt_gray; } 
+//  .checkboxes input[type="checkbox"]:checked   + label:before {
+//      color: $dk_orange; font-weight:bold;
+// }
+
+//  .checkboxes  .checkbox-label {
+//      color: $md_gray; font-weight:normal;
+// }
+
+
+// .checkboxes input[type=checkbox] .inactive{
+//   color: #eee
+// }
+
+// .custom-checkbox {
+//   font-size: 18px;
+//     vertical-align: middle;
+// }
+
+// .tasks .custom-checkbox {
+//   font-size: 16px;
+//     vertical-align: middle;
+// }
+
+
+
+
+// .custom-checkbox .grey input[type=checkbox]:checked + label:before { letter-spacing: 5px;  color:$lt_gray; } /* allow space for check mark */
+
+
+input[type=radio] { display:none; } 
+input[type=radio] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 20px;
+      vertical-align: middle;
+
+}
+input[type="radio"] + label:before { content: "\f10c"; color:#888;} /* unchecked icon */
+input[type="radio"] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+input[type=radio] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+
+input[type=radio]:checked + label:before { content: "\f111"; } /* checked icon */
+input[type=radio]:checked + label:before { letter-spacing: 10px;  color:$md_orange; } /* allow space for check mark */
+input[type=radio][disabled]:checked + label:before { letter-spacing: 10px;  color:$md_orange; } /* allow space for check mark */
+
+.custom-radio {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+#sqBtnGroup input[type=radio] { display:inline; } 
+
+
+.square-radio {
+  background: #eee;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#sqBtnGroup  input[type=radio] + label:before .square-radio { background: $lt_gray;   color: $dk_gray } /* allow space for check mark */
+#sqBtnGroup  input[type=radio]:checked + label:before    {  background: $dk_gray;  color: $lt_gray} /* allow space for check mark */
+
+
+
+
+/*.square-radio:active{
+  background: #333;
+  color: #eee;
+}*/
+

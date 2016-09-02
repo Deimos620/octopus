@@ -1,0 +1,26 @@
+.article-social
+  ul.list-inline
+    li.facebook.sharing-item data-share-type="facebook" 
+      a href="#share" 
+        .social.social-facebook data-type="facebook" 
+          i.fa.fa-facebook
+          span.txt &nbsp;Share
+    /!
+    li.twitter.sharing-item data-share-type="twitter"
+      a href="#tweet" 
+        .social.social-twitter data-type="twitter" 
+          i.fa.fa-twitter
+          span.txt &nbsp;Tweet
+    /!
+    li.pinterest.sharing-item data-share-type="pinterest" 
+      a href="#pin" 
+        .social.social-pinterest data-type="pinterest" 
+          i.fa.fa-pinterest
+    /!
+    - mailtotextbody = "mailto:?body=#{@article.title}#{@article.permalink}"
+    li.email.sharing-item
+      a href="#{mailtotextbody}" 
+        .social.social-email data-type="email" 
+          i.fa.fa-envelope-o
+     
+    /!

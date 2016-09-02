@@ -1,0 +1,56 @@
+table style="background: #fff; width: 600px; padding: 20px; margin-left: auto; margin-right:auto"
+  tr
+    td width="100%"
+
+      h1 
+        strong
+          |Hi  
+          =@recipient.first_name
+          |,
+        br/
+
+
+      h1
+        |Here is your 
+        =@email_kind.label
+      - if @projects.present?
+        strong
+          = @projects.count
+        |  NEW PROJECTS SINCE   
+        = @date_since.strftime("%B %e, %Y at %l:%M %P ")
+        table width="100%"
+          tbody
+            - @projects.take(10).each do |project|
+              tr
+                td style="border: solid 1px #eee; padding: 3px" width=" 90px"
+                   = project.full_title
+                td style="border: solid 1px #eee; padding: 3px" width=" 30px"
+                  = project.created_at.strftime("%B %e, %Y at %l:%M %P ")
+      - else
+        h1
+          | NO NEW PROJECTS 
+      hr/        
+      - if @users.present?
+        strong
+          = @users.count
+        |  NEW USERS SINCE   
+        = @date_since.strftime("%B %e, %Y at %l:%M %P ")
+        table width="100%"
+          tbody
+            - @users.take(10).each do |user|
+              tr
+                td style="border: solid 1px #eee; padding: 3px" 
+                   = user.name
+                td style="border: solid 1px #eee; padding: 3px" width=" 90px"
+                   = user.provider
+                td style="border: solid 1px #eee; padding: 3px" width=" 200px"
+                  = user.created_at.strftime("%B %e, %Y at %l:%M %P ")
+      -else 
+        h1
+          | NO NEW USERS 
+              
+
+      hr/
+       
+      = link_to  root_url(ref: @ref), target:"_blank", style: "text-transform:uppercase, font-weight: bold; font-size: 20px;"
+        |SEE ALL

@@ -1,0 +1,16 @@
+css:
+  .dashboard .top-row {margin-top: -20px}
+ 
+.row.top-row
+  .col-xs-12.col-sm-6.col-md-8
+    = render partial: '/project_dates/p/widget_schedule'
+  .col-xs-12.col-sm-6.col-md-4
+    .widget-blank
+    = render partial: '/projects/p/widget_project_info'
+    = render partial: '/participants/p/widget_participants'
+
+     
+.row
+  .col-xs-12.col-sm-6.col-md-8
+
+  .col-xs-12.col-sm-6.col-md-4

@@ -1,0 +1,16 @@
+css:
+ .dashboard .container {max-width: 1200px }
+.dashboard.container
+  .project-headline
+    .project-title
+      = link_to project_dashboard_index_path(project_id: @project.id)
+        =@project.full_title
+    .breadcrumbs
+      ul.breadcrumb
+        li
+          = link_to projects_path
+            i.fa.fa-home
+        li.active
+          |Dashboard
+  -if @project.is_meal_delivery?
+    = render partial: "/dashboard/p/meal_delivery_dashboard"

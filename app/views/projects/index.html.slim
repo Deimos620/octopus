@@ -1,0 +1,101 @@
+- @title ="Projects" 
+css:
+  .project-accordion .panel-heading  {background: #eee; font-size: 18px}
+  .project-accordion .panel-heading a, .project-accordion .panel-heading  .accordionTitle a {text-decoration: none; color: #333}
+  .project-accordion table td {padding: 8px; border: solid 1px #ccc}
+  .project-accordion table td i {font-size: 24px}
+  .project-accordion table tr:hover {background: #eee}
+
+  .label-kind-1 {background: #333}
+  .label-kind-2 {background: #777}
+.container
+  br/
+  h1.super
+    |Your Projects 
+  = render "/shared/invites"
+
+  - if current_user.all_projects
+  .panel-body style="background: #fff; padding: 10px"
+    = link_to project_kinds_path, class: 'btn btn-orange-alt btn-lg  mb20' 
+      i.fa.fa-plus
+      | NEW PROJECT
+    - @accepted = current_user.all_projects.accepted
+    - if @accepted.present?
+      #accordion.panel-group.project-accordion
+        .panel.panel-default style="padding: 0"
+          .panel-heading 
+            strong
+              .accordionTitle
+                a data-parent="#accordion" data-toggle="collapse" href="#collapseActive" 
+                  | ACCEPTED
+          #collapseActive.panel-collapse.collapse.in
+            .panel-body style="padding: 10px" 
+              table width= "100%"
+                = render "project_table_heading", p: p
+                tbody
+                  - @accepted.each do |p|
+                    = render "project_table", p: p
+    - @maybe = current_user.all_projects.maybe
+    - if @maybe.present?
+      #accordion.panel-group.project-accordion
+        .panel.panel-default style="padding: 0"
+          .panel-heading 
+            strong
+              .accordionTitle
+                a data-parent="#accordion" data-toggle="collapse" href="#collapseMaybe"
+                  | MAYBE 
+          #collapseMaybe.panel-collapse.collapse.in
+            .panel-body style="padding: 10px" 
+              table width= "100%"
+                = render "project_table_heading", p: p
+                tbody
+                  - @maybe.each do |p|
+                    = render "project_table",  p: p
+    - @declined = current_user.all_projects.declined
+    - if @declined.present?
+      #accordion.panel-group.project-accordion
+        .panel.panel-default style="padding: 0"
+          .panel-heading 
+            strong
+              .accordionTitle
+                a data-parent="#accordion" data-toggle="collapse" href="#collapseDeclined" 
+                  i.fa.fa-times
+                  | DECLINED
+          #collapseDeclined.panel-collapse.collapse.in
+            .panel-body style="padding: 10px" 
+             table width= "100%"
+                  = render "project_table_heading", p: p
+                  tbody
+                  - @declined.each do |p|
+                    = render "project_table", p: p
+              
+    - @archived_projects = current_user.archived_projects
+    - if @archived_projects.present?
+      #accordion.panel-group.project-accordion
+        .panel.panel-default style="padding: 0"
+          .panel-heading 
+            strong
+              .accordionTitle
+                a data-parent="#accordion" data-toggle="collapse" href="#collapseArchived" 
+                  | ARCHIVED 
+          #collapseArchived.panel-collapse.collapse.in
+            .panel-body style="padding: 10px" 
+              
+              table width= "100%"
+                thead  width= "100%"
+                  th
+
+                  th  width='80px'
+                    | KIND
+                  th
+                    | TITLE
+
+                  th width= "100px" align="center"
+                    | ROLE
+                  th width= "50px" align="center"
+                    | DATES
+                  th width= "80px" align="center"
+                tbody
+                  - @archived_projects.each do |p|
+                    = render "project_table", p: p
+              

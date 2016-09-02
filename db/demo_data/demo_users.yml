@@ -1,0 +1,186 @@
+
+- email: 'teslarox@ouroctopus.com'
+  first_name: Not-Jack
+  last_name: White
+  password: secretpassword
+  confirmed_at: 2015-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+  editor_user_id: 1
+
+- email: 'rose@ouroctopus.com'
+  first_name: Not-Janis
+  last_name: Joplin
+  password: secretpassword
+  confirmed_at: 2015-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 1
+
+- email: 'leonard@ouroctopus.com'
+  first_name: Not-Leonard
+  last_name: Cohen
+  password: secretpassword
+  confirmed_at: 2012-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+
+- email: 'lifeoftheparty1985@ouroctopus.com'
+  first_name: Not-Boy
+  last_name: George
+  password: secretpassword
+  confirmed_at: 2012-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 3
+
+- email: 'ziggy@ouroctopus.com'
+  first_name: Not-David
+  last_name: Bowie
+  password: secretpassword
+  confirmed_at: 2012-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'ejames@ouroctopus.com'
+  first_name: Not-Etta
+  last_name: James
+  password: secretpassword
+  confirmed_at: 2012-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 1
+
+- email: 'greek2me@ouroctopus.com'
+  first_name: Not-Maria
+  last_name: Callas
+  password: secretpassword
+  confirmed_at: 2012-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 1
+
+- email: 'rzimmerman@ouroctopus.com'
+  first_name: Not-Bob
+  last_name: Dylan
+  password: secretpassword
+  confirmed_at: 2012-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'arlo@ouroctopus.com'
+  first_name: Not-Arlo
+  last_name: Guthrie
+  password: secretpassword
+  confirmed_at: 2012-09-08 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 3
+
+- email: 'deviled.egg@ouroctopus.com'
+  first_name: Not-Robert
+  last_name: Johnson
+  password: secretpassword
+  confirmed_at: 2006-06-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 3
+
+- email: 'blue@ouroctopus.com'
+  first_name: Not-Joni
+  last_name: Mitchell
+  password: secretpassword
+  confirmed_at: 2001-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'selena@ouroctopus.com'
+  first_name: Not-Selena
+  last_name: Quintanilla-Pérez
+  password: secretpassword
+  confirmed_at: 2011-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 3
+
+- email: 'yolandi@ouroctopus.com'
+  first_name: Not-Anri
+  last_name: du Toit
+  password: secretpassword
+  confirmed_at: 2011-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'eminiem@ouroctopus.com'
+  first_name: Not-Marshall
+  last_name: Mathers
+  password: secretpassword
+  confirmed_at: 2011-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 3
+
+- email: 'stranger@ouroctopus.com'
+  first_name: Not-Willie
+  last_name: Nelson
+  password: secretpassword
+  confirmed_at: 2011-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 3
+
+- email: 'diamond@ouroctopus.com'
+  first_name: Not-Loretta
+  last_name: Lynn
+  password: secretpassword
+  confirmed_at: 2011-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'butterfly@ouroctopus.com'
+  first_name: Not-Dolly
+  last_name: Parton
+  password: secretpassword
+  confirmed_at: 2011-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'nina@ouroctopus.com'
+  first_name: Not-Nina
+  last_name: Simone
+  password: secretpassword
+  confirmed_at: 2011-11-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'horses@ouroctopus.com'
+  first_name: Not-Patti
+  last_name: Smith
+  password: secretpassword
+  confirmed_at: 2014-12-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+- email: 'femmefatale@ouroctopus.com'
+  first_name: Not-Nico
+  last_name: Päffgen
+  password: secretpassword
+  confirmed_at: 2014-12-06 17:28:09
+  level: 'fake'
+  accept_terms: true
+  gender: 2
+
+
+
+

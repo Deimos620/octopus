@@ -1,0 +1,69 @@
+
+.widget-panel
+  .participants-widget
+    .widget-title
+      |Participants
+      - if current_user.can_edit(@project.id)
+        = link_to new_project_participant_path(project_id: @project.id, participant_role: 4), class: 'btn btn-orange-alt btn-xs pull-right'
+          i.fa.fa-plus
+          |INVITE 
+    #accordion.panel-group
+      .panel.panel-default 
+        .panel-heading 
+          .accordionTitle
+            a data-parent="#accordion" data-toggle="collapse" href="#collapseAccepted" 
+              | ACCEPTED
+        #collapseAccepted.panel-collapse.collapse
+          .panel-body 
+            ul.list-unstyled
+              - @project.participants.accepted.each do |p|
+                li
+                  = render partial: "/participants/p/participants_list_name", locals: {p: p}
+      .panel.panel-default 
+        .panel-heading 
+          .accordionTitle
+            a data-parent="#accordion" data-toggle="collapse" href="#collapseMaybe" 
+              | Maybe
+        #collapseMaybe.panel-collapse.collapse
+          .panel-body 
+            ul.list-unstyled
+              - @project.participants.maybe.each do |p|
+                li
+                  = render partial: "/participants/p/participants_list_name", locals: {p: p}
+
+      .panel.panel-default 
+        .panel-heading 
+          .accordionTitle
+            a data-parent="#accordion" data-toggle="collapse" href="#collapseDeclined" 
+              | Declined
+        #collapseDeclined.panel-collapse.collapse
+          .panel-body 
+            ul.list-unstyled
+              - @project.participants.declined.each do |p|
+                li
+                  = render partial: "/participants/p/participants_list_name", locals: {p: p}
+      .panel.panel-default 
+        .panel-heading 
+          .accordionTitle
+            a data-parent="#accordion" data-toggle="collapse" href="#collapseUnseen" 
+              | Unseen
+        #collapseUnseen.panel-collapse.collapse
+          .panel-body 
+            ul.list-unstyled
+              - @project.participants.unseen.each do |p|
+                li
+                  = render partial: "/participants/p/participants_list_name", locals: {p: p}   
+      .panel.panel-default 
+        .panel-heading 
+          .accordionTitle
+            a data-parent="#accordion" data-toggle="collapse" href="#collapseInvited" 
+              | All Invited
+        #collapseInvited.panel-collapse.collapse
+          .panel-body 
+            ul.list-unstyled
+              - @project.participants.each do |p|
+                li
+                  = render partial: "/participants/p/participants_list_name", locals: {p: p}  
+      =link_to project_participants_path(project_id: @project.id), class: 'btn btn-aqua btn-md btn-block mt5'
+        |SEE ALL
+   

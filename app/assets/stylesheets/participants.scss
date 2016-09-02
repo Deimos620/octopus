@@ -1,0 +1,13 @@
+// Place all the styles related to the Participants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.participants-widget .panel-group {margin: 0}
+.participants-widget .panel-group .panel-heading {font-size: 18px; padding: 3px 6px; border-radius: 4px}
+.participants-widget .panel-group .panel-heading .accordionTitle {}
+.participants-widget .panel-group .panel-body {padding: 3px}
+.participants-widget .panel-group .panel-body li,  .participants-widget .panel-group .panel-body li a{ border-top: 1px solid #eee; padding: 2px 4px; color: #888; font-size: 14px; font-weight: normal; text-transform: none}
+.participants-widget .panel-group .panel-body li:hover {color: #cc0000; background: #eee}
+
+.participants-table table {border-color: #999; width:100%  }
+.participants-table table th {padding: 5px; text-transform: uppercase; font-size:20px}
+.participants-table table td {padding: 5px}

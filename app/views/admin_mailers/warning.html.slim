@@ -1,0 +1,39 @@
+table style="background: #fff; width: 600px; padding: 20px; margin-left: auto; margin-right:auto"
+  tr
+    td width="100%"
+      h1 
+        strong
+          |Hi  
+          =@recipient.first_name
+          |,
+        br/
+        br/
+
+
+      h1
+        |You have
+        strong
+          =@item_array.count
+        | scheduled to be posted "timeline"
+      table width="100%"
+        - @item_array.each do |social_share|
+          tr
+            td style="border: solid 1px #eee; padding: 3px"  width=" 40px"
+              = social_share.icon
+            td style="border: solid 1px #eee; padding: 3px" width=" 90px"
+              = social_share.scheduled_datetime.strftime("%D")
+            td style="border: solid 1px #eee; padding: 3px"
+              = link_to social_share_url(id: social_share.id)
+               = social_share.copy.truncate(60)
+            td style="border: solid 1px #eee; padding: 3px"
+              
+        br/
+        = render "email_project_box"
+       
+        hr/
+       
+        = link_to  project_show_url(id: @project.id, ref: @ref), target:"_blank", style: "text-transform:uppercase, font-weight: bold; font-size: 20px;"
+          |CLICK HERE TO EDIT
+
+          
+

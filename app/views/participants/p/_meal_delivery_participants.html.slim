@@ -1,0 +1,79 @@
+css:
+  .widget-tabs {}
+
+.row
+  .col-xs-12.col-sm-12.col-md-8.col-lg-9
+
+    .widget-blank.widget-tabs
+      .divider
+      .ui-tab-container
+        ul.nav.nav-tabs role="tablist" 
+          li.active
+            a data-toggle="tab" href="#accepted" role="tab" 
+              icon.fa.fa-check.icon-accepted
+              | Accepted
+              span.badge.badge-danger
+                = @project.participants.accepted.count
+          li
+            a data-toggle="tab" href="#all" role="tab" 
+              i.fa.fa-user
+              | All Invited
+              span.badge.badge-default
+                = @project.participants.count
+          li          
+            a data-toggle="tab" href="#unseen" role="tab" 
+              i.fa.fa-cog
+              | Unseen
+              span.badge.badge-danger
+                = @project.participants.unseen.count
+
+          li
+            a data-toggle="tab" href="#maybe" role="tab" 
+              i.fa.fa-envelope
+              | Maybe
+              span.badge.badge-danger
+                = @project.participants.maybe.count
+          li
+            a data-toggle="tab" href="#declined" role="tab" 
+              i.fa.fa-cog
+              | Declined
+              span.badge.badge-danger
+                = @project.participants.declined.count
+
+
+        /! Tab panes
+        .tab-content
+          #accepted.tab-pane.active.in
+            h2 ACCEPTED
+            = render  partial: '/participants/p/tab_yes'
+          #all.tab-pane.fade.fade
+            h2 ALL INVITED
+            = render  partial: '/participants/p/tab_all_participants' 
+        
+          #declined.tab-pane.fade
+            h2 DECLINED
+            = render partial: '/participants/p/tab_no'
+          #maybe.tab-pane.fade
+            h2 MAYBE
+            = render partial:  '/participants/p/tab_maybe'
+          #unseen.tab-pane.fade
+            h2 UNSEEN
+            = render  partial: '/participants/p/tab_unseen'
+
+ 
+
+  .col-xs-12.col-sm-12.col-md-4.col-lg-3
+
+    - if current_user.can_edit(@project.id)
+      .widget-blank style= "margin-top: 56px"
+        = link_to new_project_participant_path(project_id: @project.id, participant_role: 4), class: 'btn btn-orange'
+          i.fa.fa-pencil
+          |ADD PARTICIPANTS
+      = link_to project_add_recipients_path(project_id: @project.id, participant_role: 3),  class: 'btn btn-orange-alt'
+
+        i.fa.fa-pencil
+        |ADD RECIPIENTS
+    = render partial: '/projects/p/widget_project_info'
+   
+
+  

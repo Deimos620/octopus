@@ -1,0 +1,81 @@
+
+
+
+header.article-header
+  - if @article.blog_categories.present?
+    .categories
+      ul.list-inline.category-badge 
+        = @article.blog_categories.each do |category|
+          li
+            / = category.name
+            a.category href="/categories/#{category.slug}"  rel="tag" 
+              = category.name
+  .article-title-container
+    h1
+      span itemprop="headline" 
+        = @article.title
+    .contributor itemprop="author" 
+      span itemprop="author" 
+        a href="/contributors/#{@article.author.slug || 'staff'}/"
+          |by 
+          = @article.author.name || "Octopus Staff"
+    .meta-information
+      .published
+        time.published datetime= @article.published_corrected.strftime("%F") itemprop="datePublished" pubdate= @article.published_corrected.strftime("%F")
+
+        i.fa.fa-calendar.mr10
+        - if @article.posted_today?
+          = @article.published_corrected.strftime("%B %e, %Y at %l:%M %P")
+        -else
+          = @article.published_corrected.strftime("%B %e, %Y")
+
+
+
+    = render partial: "article_social"
+
+
+section.mt10
+  .imgarea
+    - if @article.hero_img.present?
+      = image_tag @article.hero_img
+      .article-caption
+        = @article.hero_caption
+    -else
+      = image_tag 'blog/default-blog-hero.jpg'
+      .article-caption
+        |This is where a caption will go.
+    / img sizes=("(min-width: 768px) 750px), 100vw" srcset=("//assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG 1900w),\n                    //assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG=s1600x1900 1600w,\n                    //assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG=s1300x1600 1300w,\n                    //assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG=s1000x1400 1000w,\n                    //assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG=s900x1300 900w,\n                    //assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG=s750x1300 750w,\n                    //assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG=s500x1300 500w,\n                    //assets.goodstatic.com/s3/magazine/assets/555194/original/IMG_9764.JPG=s320x1000 320w" /
+    / span.share
+    /   a.fa.fa-pinterest.managed-link data-image-url= 'http://hellogiggles.com/wp-content/uploads/2015/05/16/Black-and-white-cat.jpg' data-share-image="pinterest" 
+    /   a.fa.fa-tumblr.managed-link data-image-url=  'http://hellogiggles.com/wp-content/uploads/2015/05/16/Black-and-white-cat.jpg' data-share-image="tumblr" 
+  / .caption
+  /   = @article.hero_caption
+  / - if @article.lead.present?
+  /   .article-lead itemprop="articleLead"
+  /     = @article.lead.html_safe
+  .article-body itemprop="articleBody"
+    = @article.body.html_safe
+ 
+hr/
+= render partial: "article_social"
+
+
+- if @article.blog_tags.present?
+  .article-tags
+    ul.list-inline.tag-badge
+      = @article.blog_tags.each do |tag|
+        li
+          / = category.name
+          a.tag href="/tags/#{tag.slug}"  rel="tag"
+            |#
+            = tag.name
+.articles-reccommended
+
+
+.article-comments
+  .disqus_thread
+    = render partial: "blog/shared/disqus"
+  / a.article-social-link.comments href="hherps" 
+  /   span.comment-count 69
+  /   span.comment-title Comments
+

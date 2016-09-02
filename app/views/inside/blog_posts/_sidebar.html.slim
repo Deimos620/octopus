@@ -1,0 +1,51 @@
+- if @article.present? && @article.id.present?
+  = link_to blog_article_path( @article.id), class: 'btn btn-orange btn-block mb10', target: "_blank"
+    |PREVIEW
+- if @article.is_live?
+  .well
+    h3
+      strong
+        |ANALYTICS
+    ul.list-unstyled
+      li
+        |DAYS LIVE: 
+        = days_ago(@post.publication_date)
+      li.divider
+      li
+        |VIEWS: 
+        / = days_ago(@post.publication_date)
+      li
+        |AVG TIME: 
+        / = days_ago(@post.publication_date)
+      li
+        |BEST REFERRER: 
+        / = days_ago(@post.publication_date)
+      li
+        |NEWEST REFERRER: 
+        / = days_ago(@post.publication_date)
+      li
+        |TOP EXIT PAGE: 
+        / = days_ago(@post.publication_date)
+-if @article.accepted?
+  |schedule
+/ - if @post.rejected?
+.well
+  h3
+    strong
+      |PHOTOS
+  .panel-body
+    = link_to  root_path, class: 'btn btn-orange-alt'
+      i.fa.fa-plus
+      |  ADD PHOTO
+    / - if @post.blog_images.present?
+    /   |LIST OF IMGAGES
+- if @article.blog_references.present?
+  .well
+    h3
+      strong
+        |REFERENCES
+/ - if @post.blog_editor_notes.present?
+/   .well
+/     h3
+/       strong
+/         |NOTES

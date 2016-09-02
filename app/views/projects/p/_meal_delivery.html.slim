@@ -1,0 +1,22 @@
+
+.panel-row.panel-row-700 
+  .panel.panel-octopus
+    .panel-heading
+      - if @project.is_draft?
+        .panel-title
+         
+          .fa.fa-plus
+          |  Create&nbsp;
+          span.light
+            = @project.full_title
+          |   
+          
+          / = render partial: "/projects/p/recipient_names"
+      - else
+        .panel-title.small-panel-title
+          .fa.fa-pencil
+          | Edit
+          span style="font-weight: 300"
+            = @project.full_title
+    = render partial: '/projects/forms/meal_delivery_form'
+

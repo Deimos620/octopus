@@ -1,0 +1,25 @@
+- if location != "dashboard"
+  - if current_user.is_event_creator(e.id)
+    .pull-right
+      = link_to root_path, class: 'btn btn-xs btn-orange-alt mr10'
+        i.fa.fa-pencil
+        |EDIT
+  -else
+    - if current_user.is_recipient(e.project_date.project_id) 
+      br/
+      div.mt5.ml20 style= "border-top: 1px solid #999; padding-top: 5px"
+        - if e.pending?
+          = link_to project_event_response_path(project_id: @project.id, project_date_id: @project_date.id, id: e.id, approval: 'true'), class: 'btn btn-xs btn-green mr5'
+            i.fa.fa-check
+            | Approve
+          = link_to project_event_response_path(project_id: @project.id, project_date_id: @project_date.id, id: e.id, approval: 'false'), class: 'btn btn-xs btn-danger mr5'
+            |Reschedule
+        - elsif  e.is_answered?
+          - if e.reschedule?
+            = link_to project_event_response_path(project_id: @project.id, project_date_id: @project_date.id, id: e.id, approval: 'true'), class: 'btn btn-xs btn-default mr5'
+              i.fa.fa-check
+              | Approve Instead
+          - if e.approved?
+            = link_to project_event_response_path(project_id: @project.id, project_date_id: @project_date.id, id: e.id, approval: 'false'), class: 'btn btn-xs btn-default mr5'
+              |Reschedule Instead
+        

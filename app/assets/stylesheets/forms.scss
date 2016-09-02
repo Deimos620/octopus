@@ -1,0 +1,142 @@
+.form-group .form-subgroup {
+  margin: 20px 10px 10px 10px; 
+  background: #eee; 
+  padding: 15px 15px 15px 15px;
+}
+
+.panel-inside .simple_form select {
+  margin-left: 10px;
+} 
+
+.panel-inside .simple_form label {
+  font-size: 18px;
+  text-align: left;
+  color: #888;
+}
+
+.panel-octopus .simple_form label {
+  font-size: 18px;
+  text-align: left;
+  color: $md_aqua;
+}
+
+.panel .simple_form abbr, accronym{ 
+  border-bottom: 0px !important; 
+ color: #dc251c !important; 
+   } 
+
+
+.panel-octopus, .panel-inside  {
+  border: 2px solid $lt_aqua;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 0px 0px 20px 0px;
+  /*-moz-box-shadow: 0 0px 0 rgba(12,12,12,0.03);
+  -webkit-box-shadow: 0 0px 0 rgba(12,12,12,0.03);
+  box-shadow: 0 0px 0 rgba(12,12,12,0.03);*/
+}
+
+.panel-octopus .panel-title {
+  font-size: 28px;
+  color: $text_aqua;
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif;
+  text-decoration: none;
+  border: none;
+  outline: 0;
+  font-weight: 800;
+}
+.panel-octopus .panel-title i {
+  margin-right: 5px;
+}
+
+ .panel-octopus .panel-title .small-panel-title {font-size: 20px}
+
+.panel-octopus .panel-body, .panel-inside .panel-body {
+  padding: 30px;
+  margin: 0;
+}
+
+.panel-octopus .panel-footer, .panel-inside .panel-footer {
+  background: #fff;
+}
+
+.panel-heading{
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $text_aqua;
+  font-size: 34px; 
+  border-bottom: solid 1px $xlt_gray;
+  padding-bottom: 15px;
+}
+
+.panel-octopus label {
+  font-size: 22px;
+  color: $dk_gray;
+}
+
+.panel-octopus fieldset .bootstrap-checkbox label {
+  font-size: 18px;
+  color: $dk_gray;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+.panel-body .new-project label{color: $md_aqua; }
+.panel-body .new-project .subgroup-address{background: #999; padding: 10px; width: 100%}
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+
+  
+.panel-row {margin-right: auto; margin-left: auto}
+.panel-row-300 {
+  max-width: 300px;
+}
+
+.panel-row-350 {
+  max-width: 350px;
+}
+
+.panel-row-400 {
+  max-width: 400px;
+  overflow:visible; 
+}
+
+.panel-row-450 {
+  max-width: 450px;
+  overflow:visible; 
+}
+
+.panel-row-500 {
+  max-width: 500px;
+}
+
+
+.panel-row-550 {
+  max-width: 550px;
+}
+.panel-row-600 {
+  max-width: 600px;
+}
+.panel-row-700 {
+  max-width: 700px;
+}
+.panel-row-800 {
+  max-width: 800px;
+}
+.panel-row-900 {
+  max-width: 900px;
+}
+
+// DEFAULT SIMPLE FORMS
+.checkbox .boolean {margin-right:7px; }
+.radio label,  .panel-octopus .simple_form .checkbox label {color: #666; font-size: 14px}
+.panel-octopus .simple_form  .sublabel {color: #666; font-size: 14px}
+
+ .panel-body .panel-section-title {font-size: 24px; color: #777; font-weight: 800}
+  .available-dates  div {font-size: 18px;  margin-bottom: 6px }
+  .available-dates  .avail-true {color: #333}
+  .available-dates  .avail-false {color: #999; font-weight: 400; text-decoration: line-through}
+  .panel-octopus .panel-body .section-subtitle {font-weight: 700; color: $md_aqua; font-size:16px}
+

@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    = display_meta_tags
+
+
+    link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,800,700,300,600" 
+
+    link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Dancing+Script"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'blog/blog', media: 'all', 'data-turbolinks-track' => true
+
+  
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    
+
+    = favicon_link_tag 'favicon.ico'
+    = csrf_meta_tags 
+
+    = Gon::Base.render_data
+
+ 
+
+  body.blog
+    #topwrapper
+      = render  partial: '/blog/shared/navbar'  
+      = render  partial: '/blog/shared/header'  
+      = yield
+      = render partial: '/blog/shared/footer'    
+      = render partial: "/blog/shared/disqus_layout"
+

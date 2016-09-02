@@ -1,0 +1,46 @@
+
+.container
+  section.page-signup.mt50
+    .form-container
+      = image_tag 'branding/octopus-logo-lg.png', alt: 'Octopus', style: "padding: 0 50px"
+      hr/
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = f.error_notification
+        - if devise_mapping.omniauthable? 
+          / - resource_class.omniauth_providers.each do |provider| 
+          /   / = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) 
+          .form-group
+            = link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-facebook btn-block btn-lg'
+              |Sign in with Facebook
+            = link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-gplus btn-block mt5 btn-lg'
+              |Sign in with Google
+            / = link_to user_omniauth_authorize_path(:twitter), class: 'btn btn-twitter btn-block btn-lg'
+            /   |Sign in with Twitter
+          span.line-thru OR
+        form.form-horizontal
+          fieldset
+            .form-group
+              .input-group.input-group-lg
+                span.input-group-addon
+                  i.fa.fa-envelope
+                = f.email_field :email, required: true, autofocus: true, label: false, class: 'form-control', placeholder: 'EMAIL'
+            .form-group
+              .input-group.input-group-lg
+                span.input-group-addon
+                  i.fa.fa-lock.fa-lg
+                = f.password_field :password, required: false , label: false, class: 'form-control', placeholder: 'PASSWORD'
+            .form-group
+              = f.button :submit, "Log in", class: 'btn btn-aqua btn-block btn-lg'
+
+        section
+          p.text-center
+            - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' 
+              = link_to "Forgot your password?", new_password_path(resource_name) 
+
+
+          
+          p.text-center.text-muted.text-small
+            | Don't have an account yet?
+            = link_to new_user_registration_path
+              | Sign up
+

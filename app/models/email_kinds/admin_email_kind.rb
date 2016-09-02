@@ -1,0 +1,2 @@
+class AdminEmailKind < EmailKind
+end

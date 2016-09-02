@@ -1,0 +1,5 @@
+- if @project.participants.unseen.present?
+  = render partial: '/participants/p/participants_table', locals: {p: p, f: "unseen"}
+- else
+  h1
+    | No unseen invites.

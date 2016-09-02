@@ -1,0 +1,161 @@
+- name: New Years Day
+  tag: "#NewYearsDay"
+  editor_user_id: 2
+  month: January
+  date: 1
+  rank: 1
+
+- name: St. Patrick's Day
+  tag: "#StPatricksDay"
+  editor_user_id: 2
+  month: March
+  date: 17
+  rank: 1
+
+- name: Halloween
+  tag: "#Halloween"
+  editor_user_id: 2
+  month: October
+  date: 31
+  rank: 1
+
+
+- name: Dia de los Muertos (Day of the Dead)
+  tag: "#DiadelosMuertos"
+  editor_user_id: 2
+  month: November
+  date: 1
+  rank: 2
+
+
+- name: Valentine's Day
+  tag: "#ValentinesDay"
+  editor_user_id: 2
+  month: February
+  date: 14
+  rank: 1
+
+- name: Easter
+  tag: "#Easter"
+  editor_user_id: 2
+  month: Variable
+  day_of_week: Sunday
+  # by_day_of_week_description: First Sunday of August
+  by_day_of_week: true
+  rank: 1
+
+- name: Mothers' Day
+  tag: "#MothersDay"
+  editor_user_id: 2
+  month: May
+  day_of_week: Sunday
+  by_day_of_week_description: Second Sunday of August
+  by_day_of_week: true
+  rank: 1
+  week_number: 2
+
+- name: Fathers' Day
+  tag: "#FathersDay"
+  editor_user_id: 2
+  month: June
+  day_of_week: Sunday
+  by_day_of_week_description: Second Sunday of August
+  by_day_of_week: true
+  week_number: 3
+  rank: 1
+
+
+- name: Sisters' Day
+  tag: "#SistersDay"
+  editor_user_id: 2
+  month: August
+  day_of_week: Sunday
+  by_day_of_week_description: First Sunday of August
+  by_day_of_week: true
+  rank: 2
+
+
+- name: Sisters' Day
+  tag: "#SistersDay"
+  editor_user_id: 2
+  month: August
+  day_of_week: Sunday
+  by_day_of_week_description: First Sunday of August
+  by_day_of_week: true
+
+- name: Chocolate Cake Day
+  tag: "#ChocolateCakeDay"
+  editor_user_id: 2
+  month: January
+  date: 27
+
+- name: National Cat Day
+  tag: "#NationalCatDay"
+  editor_user_id: 2
+  month: October
+  date: 29
+  url: http://www.nationalcatday.com/
+
+- name: National Poetry Month
+  category: month
+  tag: "#NationalPoetryMonth"
+  editor_user_id: 2
+  month: April
+
+- name: April Fool's Day
+  tag: "#AprilFoolsDay"
+  editor_user_id: 2
+  month: April
+  date:   1
+  rank: 5  
+
+- name: International Children's Book Day
+  tag: "#InternationalChildrensBookDay"
+  editor_user_id: 2
+  month: April
+  date:   2
+  rank: 5  
+  url: http://www.holidayinsights.com/moreholidays/April/childrensbookday.html
+
+- name: National Pecan Month
+  category: month
+  tag: "#NationalPecanMonth"
+  editor_user_id: 2
+  month: April
+
+- name: National Karaoke Week
+  category: week
+  tag: "#NationalKaraokeWeek"
+  editor_user_id: 2
+  month: April
+  week_number: 4
+
+- name: PI Day
+  tag: "#PiDay"
+  editor_user_id: 2
+  month: March
+  date:   14
+  rank: 3 
+
+- name: Star Wars Day
+  tag: "#Maythe4th"
+  editor_user_id: 2
+  month: May
+  date:   4
+  rank: 3 
+
+- name: Candada Day
+  tag: "#CanadaDay"
+  editor_user_id: 2
+  month: July
+  date:   1
+  rank: 8
+
+- name: Hot Tea Month
+  category: month
+  tag: "#HotTeaMonth"
+  editor_user_id: 2
+  month: January
+  
+
+

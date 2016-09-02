@@ -1,0 +1,50 @@
+
+- name: 'DIY & Tutorials'
+  editor_user_id: 2
+  slug: diy-tutorials
+- name: 'Food'
+  slug: food
+  editor_user_id: 2
+- name: 'Clothes'
+  slug: clothes
+  editor_user_id: 2
+- name: 'Etiquette'
+  slug: etiquette
+  editor_user_id: 2
+- name: 'Decorating'
+  slug: decorating
+  editor_user_id: 2
+- name: 'Party Themes'
+  slug: party-themes
+  editor_user_id: 2
+- name: 'Toolbox'
+  slug: toolbox
+  editor_user_id: 2
+- name: 'Finds'
+  slug: finds
+  editor_user_id: 2
+- name: 'Grab Bag'
+  slug: grab-bag
+  editor_user_id: 2
+
+
+
+- name: ThrowbackThursday
+  editor_user_id: 2
+  slug: "tbt"
+
+- name: SweetSaturday
+  editor_user_id: 2
+  slug: "sweetsaturday"
+
+- name: FiberworkFriday
+  editor_user_id: 2
+  slug: fiberworkfriday
+
+- name: Quizzes
+  editor_user_id: 2
+  slug: quizzes
+
+
+
+

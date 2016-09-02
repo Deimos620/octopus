@@ -1,0 +1,30 @@
+
+- name: 'No Nuts'
+  kind: 1
+  rank: 1
+- name: 'No Dairy'
+  kind: 1
+- name: 'No Pork'
+  kind: 1
+- name: 'No Beef'
+  kind: 1
+- name: 'No Gluten'
+  kind: 1
+  rank: 2
+- name: 'No Shellfish'
+  kind: 1
+- name: 'No Eggs'
+  kind: 1
+- name: 'No Meat'
+  kind: 1
+
+- name: 'Kosher'
+  kind: 2
+- name: 'Halal'
+  kind: 2
+- name: 'Vegetarian'
+  kind: 2
+- name: 'Vegan'
+  kind: 2
+- name: 'Diabetic'
+  kind: 2

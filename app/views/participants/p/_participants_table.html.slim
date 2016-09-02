@@ -1,0 +1,36 @@
+
+
+.participants-table
+  table.table-bordered
+    thead
+      th
+        |Participant
+      th align="center" width="100px"
+        |Status
+      th width= '90px'
+        | Updated
+      th width= '90px'
+        |Invited
+      th width= '180px'
+        |Role
+      / th width= '80px'
+      /   |Reminder?
+    tbody
+      - if f == "all"
+        - @project.participants.order(updated_at: :desc).each do |p|
+          = render partial: '/participants/p/participants_list', locals: {p: p}
+      - elsif f == "accepted"
+        - @project.participants.accepted.order(updated_at: :desc).each do |p|
+          = render partial: '/participants/p/participants_list', locals: {p: p}
+
+      - elsif f == "declined"
+        - @project.participants.declined.order(updated_at: :desc).each do |p|
+          = render partial: '/participants/p/participants_list', locals: {p: p}
+
+      - elsif f == "maybe"
+        - @project.participants.maybe.order(updated_at: :desc).each do |p|
+          = render partial: '/participants/p/participants_list', locals: {p: p}
+
+      - elsif f == "unseen"
+        - @project.participants.unseen.order(updated_at: :desc).each do |p|
+          = render partial: '/participants/p/participants_list', locals: {p: p}

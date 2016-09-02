@@ -1,0 +1,14 @@
+- @source = "new project"
+- @title = "Create a Mailing List" 
+.container.pt50
+  .panel-row.panel-row-700 
+    .panel.panel-octopus
+      .panel-heading
+        .panel-title
+          .fa.fa-plus
+          |  Create&nbsp;
+          span.light
+            = @list.category_name
+
+      = render partial: 'form'
+

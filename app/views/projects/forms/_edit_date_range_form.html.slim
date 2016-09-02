@@ -1,0 +1,68 @@
+- end_date = @project.prep_end_datetime.strftime("%m %d %Y") if @project.prep_end_datetime? && @project.prep_end_datetime
+
+- start_date = @project.prep_start_datetime.strftime("%m %d %Y") if @project.prep_start_datetime? && @project.prep_start_datetime
+
+= simple_form_for @project, url: update_date_range_path(@project) do |f|
+  = hidden_field_tag :source, value: "edit date range"
+  .panel-body style="height: 300px"
+    = f.error_notification
+    = f.hidden_field :editor_contact_id, value: current_user.id
+    - if @first_event.blank? 
+      = f.hidden_field :first_event, value: nil, :id => 'first_event'
+    -else
+      = f.hidden_field :first_event, value: @first_event.date_start, :id => 'first_event'
+    .form-group
+      .row 
+        - if @project.prep_start_datetime.present?
+          .col-md-5.col-sm-6.col-xs6
+            - if @project.prep_start_datetime <= Date.current or @project.events.present? 
+              label.form-label.dk-aqua
+                |Project Started On
+              div
+                #calendar-iconi.fa.fa-calendar
+                = @project.prep_start_datetime.strftime("%B %e, %Y ")
+                =  f.hidden_field  :prep_start_datetime,  :id => 'hiddendate',  required: true, value: start_date
+            -else
+              label.form-label.dk-aqua
+                |Start Date
+              #datetimepickerStartIcon.input-group.date
+                =  f.text_field  :prep_start_datetime, :class => 'form-control',  :id => 'datetimepickerStart', :autofocus => true, :required => true,  :maxlength => 35, value: start_date
+                span.input-group-addon
+                  i#calendar-icon.fa.fa-calendar
+          .col-md-5.col-sm-6.col-xs6
+            label.form-label.dk-aqua
+
+              |Date Ends
+            #datetimepickerStartIcon.input-group.date
+              =  f.text_field  :prep_end_datetime, :class => 'form-control',  :id => 'datetimepickerEnd', :autofocus => true, :required => true,  :maxlength => 35, value: end_date
+
+      
+
+
+
+              span.input-group-addon
+                i#calendar-icon-end.fa.fa-calendar
+        - elsif @project.prep_start_datetime.blank? &&  @project.prep_end_datetime.blank? or  @project.prep_start_datetime.blank? &&  @project.prep_end_datetime.present?
+          .col-md-5.col-sm-6.col-xs6
+
+            label.form-label.dk-aqua
+              |Start Date
+            #datetimepickerStartIcon.input-group.date
+              =  f.text_field  :prep_start_datetime, :class => 'form-control',  :id => 'datetimepickerStart', :autofocus => true, :required => true,  :maxlength => 35, value: start_date
+              span.input-group-addon
+                i#calendar-icon.fa.fa-calendar
+          
+          .col-md-5.col-sm-6.col-xs6
+            label.form-label.dk-aqua
+              |Date Ends
+            #datetimepickerStartIcon.input-group.date
+              =  f.text_field  :prep_end_datetime, :class => 'form-control',  :id => 'datetimepickerEnd', :autofocus => true, :required => true,  :maxlength => 35, value:end_date
+              span.input-group-addon
+                i#calendar-icon-end.fa.fa-calendar
+
+  .panel-footer
+    = f.button :submit, value: 'UPDATE DATE RANGE ', :class => 'btn btn-aqua btn-lg btn-block mb10'
+    = link_to 'CANCEL',  projects_path, :class => 'btn btn-default  ml5'
+
+
+

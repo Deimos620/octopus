@@ -1,0 +1,27 @@
+-if article.is_live?
+  span.label.label-success.text-uppercase
+    | LIVE 
+-if article.accepted?
+  span.label.label-success.text-uppercase style="background: #58a192"
+    | ACCEPTED 
+-if article.is_queued?
+  span.label.label-warning.text-uppercase
+    | Queued
+-if article.archived?
+  span.label.label-default.text-uppercase
+    | Archived
+-if article.pending?
+  span.label.label-danger.text-uppercase
+    | Pending
+-if article.pending_edit?
+  span.label.label-danger.text-uppercase
+    | Pending Edit
+-if article.rejected?
+  span.label.label-black.text-uppercase style="background: #000"
+    | Rejected
+-if article.draft?
+  span.label.label-info.text-uppercase
+    | Draft
+/ -if post.is_retired_version?
+/   span.label.label-violet.text-uppercase
+/     | RETIRED VERSION 

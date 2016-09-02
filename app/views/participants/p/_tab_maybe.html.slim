@@ -1,0 +1,5 @@
+- if @project.participants.maybe.present?
+  = render partial: '/participants/p/participants_table', locals: {p: p, f: "maybe"}
+- else
+  h1
+    | There are no maybes.

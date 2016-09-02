@@ -1,0 +1,31 @@
+
+/ .stickyheader#signed_in
+/   nav.navbar.navbar-default.navbar-octopus
+/     .container-fluid
+/       .navbar-header
+/         / button.navbar-toggle aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+/         /   span.sr-only Toggle navigation
+/         /   span.icon-bar
+/         /   span.icon-bar
+/         /   span.icon-bar
+     
+/         a#left-toggle.menutoggle.pull-left
+/           i.fa.fa-bars
+/         / button.navbar-toggle.collapsed aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+/         /   span.sr-only Toggle navigation
+/         /   span.icon-bar
+/         /   span.icon-bar
+/         /   span.icon-bar
+/         .navbar-brand width= "80px"
+/           = link_to root_path,  style: "padding-bottom: 5px"
+/             = image_tag 'https://s3-us-west-2.amazonaws.com/oct-alpha/layout/octopus-logo-sm.png', alt: 'Octopus',   height: "50%", width: '50%'
+/         / a.navbar-brand href="#"  Brand
+/       /! Collect the nav links, forms, and other content for toggling
+/       #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      
+/         ul.nav.navbar-nav.navbar-right
+
+/           li
+/             = link_to blog_articles_path
+/               |BLOG
+/         

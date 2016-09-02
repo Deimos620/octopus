@@ -1,0 +1,6 @@
+- if current_user.can_edit(@project.id)
+  = link_to project_participant_path(project_id: p.project_id, id: p.id)
+    = p.name
+- else
+  = link_to project_participant_path(project_id: p.project_id, id: p.id)
+    = p.limited_name

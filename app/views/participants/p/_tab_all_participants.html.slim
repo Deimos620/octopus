@@ -1,0 +1,10 @@
+
+- if @project.participants.present?
+  = render partial: '/participants/p/participants_table', locals: {p: p, f: "all"}
+- else
+  h1
+    | You have not invited any participants
+  - if current_user.can_edit(@project.id)
+    = link_to new_project_participant_path(project_id: @project.id, participant_role: 4), class: 'btn btn-orange-alt btn-lg btn-block'
+      i.fa.fa-plus
+      |INVITE PARTICIPANTS

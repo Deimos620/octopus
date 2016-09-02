@@ -1,0 +1,29 @@
+- name: '#diy'
+  editor_user_id: 2
+  slug: diy
+- name: '#weddings'
+  editor_user_id: 2
+  slug: weddings
+- name: '#fashion'
+  editor_user_id: 2
+  slug: fashion
+- name: '#tbt'
+  slug: tbt
+  editor_user_id: 2
+- name: '#ThrowBackThursday'
+  slug: throwback-thursday
+  editor_user_id: 2
+- name: '#history'
+  slug: history
+  editor_user_id: 2
+- name: '#cake'
+  slug: cake
+  editor_user_id: 2
+- name: '#knitting'
+  editor_user_id: 2
+  slug: knitting
+- name: '#knitting pattern'
+  editor_user_id: 2
+  slug: knitting pattern
+
+

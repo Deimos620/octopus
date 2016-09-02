@@ -1,0 +1,108 @@
+ 
+.panel-row.panel-row-900 
+  .panel.panel-octopus
+    .panel-heading
+      .panel-title
+        |REVIEW PROJECT
+    .panel-body
+      .well
+        - if  !@project.has_recipients?
+          = link_to project_add_recipients_path(project_id: @project.id, participant_role: 3),  class: 'btn btn-aqua btn-sm mt5'
+            i.fa.fa-plus
+            | ADD RECIPIENTS
+        - elsif @project.has_recipients?
+          .section-subtitle
+            | ADDED RECIPIENTS:
+          .text style= "font-size: 24px"
+            = render partial: "/projects/p/recipient_names"
+          = link_to project_add_recipients_path(project_id: @project.id, participant_role: 3),  class: 'btn btn-aqua btn-sm mt5'
+            i.fa.fa-plus
+            | ADD MORE RECIPIENTS
+          - if !@project.has_complete_address?
+            .text.mt20
+              strong
+                |YOU CAN'T ADD HELPERS WITHOUT AN ADDRESS
+      .row
+        .col-xs-12.col-sm-8
+          .panel-section-title
+            |Address
+          - if @project.addresses.present?
+            - if @project.has_complete_address?
+             = render "/projects/p/address", project: @project
+              =link_to edit_project_path(source: 's', id: @project.id),  data: {no_turbolink: true}, class: 'btn btn-orange-alt btn-sm '
+                |EDIT
+
+            - else
+              =link_to edit_project_path(source: 's', id: @project.id),  data: {no_turbolink: true}
+                | FINISH ADDRESS
+          -else 
+            =link_to edit_project_path(source: 's', id: @project.id),  data: {no_turbolink: true}, class: 'btn btn-orange-alt btn-md '
+              | ADD ADDRESS
+          hr/
+          .panel-section-title
+            | INVITED HELPERS
+          - if @project.has_helpers?
+            .text
+              = @project.project_helpers.map{ |r| link_to(r.name,project_participant_path(project_id: r.project_id, id: r.id))}.join(" & ").html_safe
+            - if @project.has_complete_address?
+              = link_to new_project_participant_path(project_id: @project.id, participant_role: 4), class: 'btn btn-aqua btn-sm mt5'
+                  i.fa.fa-plus
+                    | INVITE MORE HELPERS
+            - else
+              .text.mt20
+                strong
+                  |YOU CAN'T ADD HELPERS WITHOUT AN ADDRESS
+          - else
+             = link_to new_project_participant_path(project_id: @project.id, participant_role: 4), class: 'btn btn-aqua btn-sm mt5'
+              i.fa.fa-plus
+                | INVITE HELPERS
+
+          
+        .col-xs-12.col-sm-4
+          .panel-section-title
+            |Houshold Diet
+          .form-group
+            - if @project.has_diet_restrictions_or_favorites?
+            
+              - if @project.has_allergy_restrictions?
+                .section-subtitle
+                  |Allergies & Preferences
+                em.color-mdgray
+                  = @project.allergy_restrictions.each.map{ |r| r.name }.join(",  ") 
+
+              - if @project.has_diet_restrictions?
+                .section-subtitle
+                  |Diet
+                em.color-mdgray
+                  = @project.diet_restrictions.each.map{ |r| r.name }.join(",  ") 
+              - if @project.notes.present?
+                .section-subtitle
+                  |Favorites Foods
+                em.color-mdgray
+                  = @project.notes
+            - else
+              em.color-md-gray
+                |No dietary restrictions or household favorite foods.
+            .form-group
+              = link_to  project_add_restrictions_path(project_id: @project.id, source: 's'),  class: 'btn btn-orange-alt btn-xs mt10 '
+                i.fa.fa-pencil
+                | EDIT RESTRICTIONS
+          hr/
+          .panel-section-title
+            |Available Dates
+          - if @project.project_dates.present?
+            .form-group
+              .available-dates
+                - @project.project_dates.order(schedule_date: :asc).each do |event|
+                  div class="avail-#{event.available}"
+                    =  event.schedule_date.strftime("%a., %B %d, %Y")
+              = link_to "EDIT AVAILABILITY",  project_available_dates_path(project_id: @project.id, source: 's'),  :class => 'btn btn-orange-alt btn-md '
+              = link_to "CHANGE DATE RANGE",  project_edit_date_range_path(project_id: @project.id, source: 's', :anchor =>"topwrapper"),  data: {no_turbolink: true}, :class => 'btn btn-aqua btn-md mt10'
+          -else
+            strong
+              |You have not set a date range for the project.
+            = link_to "SET DATE RANGE",  project_edit_date_range_path(project_id: @project.id, source: 's', :anchor =>"topwrapper"),  data: {no_turbolink: true}, :class => 'btn btn-default btn-md mt10'
+    .panel-footer
+      = link_to project_dashboard_index_path(project_id: @project.id), class: 'btn btn-block btn-violet btn-large'       
+        i.fa.fa-star
+          |GO TO PROJECT DASHBOARD

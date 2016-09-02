@@ -1,0 +1,21 @@
+.container style="max-width: 1200px"
+  .row
+    .col-md-8
+      - BlogSection.all.each do |section|
+        .col-md-4.col-sm-6
+          article
+            img
+              - if section.newest_image.present?
+                = image_tag section.newest_image
+              - else
+                = image_tag 'blog/default-blog-thumbnail.jpg'
+
+              
+            h2
+              = link_to blog_section_path(section)
+                = section.title
+            .section-description
+              = section.description
+              = section.blog_posts.count unless section.blog_posts.blank?
+    .col-md-4
+      = render "blog/shared/sidebar"
